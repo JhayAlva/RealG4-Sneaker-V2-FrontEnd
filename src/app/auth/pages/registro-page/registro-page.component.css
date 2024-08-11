@@ -1,0 +1,32 @@
+.container{
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+.img-responsive {
+  max-width: 200%;
+  height: auto;
+}
+
+.vertical-line {
+  border-left: 2px solid #ccc; /* Color y grosor de la línea */
+  height: 100%; /* Asegúrate de que la línea se extiende a la altura de su contenedor */
+}
+
+.hidden-sm {
+  display: none; /* Ocultar por defecto en pantallas pequeñas */
+}
+
+@media (min-width: 768px) {
+  .hidden-sm {
+    display: block; /* Mostrar en pantallas medianas y más grandes */
+  }
+}
+
+::ng-deep .p-inputtext {
+  width: 300px;
+}
+
+a{
+  color: rgb(201, 198, 198);
+}

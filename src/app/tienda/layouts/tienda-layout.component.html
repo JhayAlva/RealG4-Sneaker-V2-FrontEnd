@@ -1,0 +1,57 @@
+<div class="card">
+  <p-menubar [model]="menuItems">
+    <ng-template pTemplate="start">
+      <img src="../../../assets/images/logo2.png" routerLink="/es-Es/home" class="img-responsive" style="cursor: pointer;max-width: 100px; max-height: 29px;">
+    </ng-template>
+    <ng-template pTemplate="item" let-item let-root="root">
+      <a pRipple class="flex align-items-center p-menuitem-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <tienda-search-bar/>
+        @if (!usuario()) {
+          <div class="card flex justify-content-center gap-3">
+            <div class="p-col">
+              <a routerLink="/auth/login" class="p-button font-bold">
+                Login
+              </a>
+            </div>
+            <div class="p-col">
+              <a routerLink="/auth/registro" class="p-button font-bold">
+                Registro
+              </a>
+            </div>
+          </div>
+        }@else{
+          @if(usuario()?.avatar === ''){
+            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+            icon="pi pi-user"
+            size="normal"
+            [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }"
+            shape="circle"></p-avatar>
+          }@else {
+            <p-avatar [image]="usuario()?.avatar"
+            size="normal"
+            shape="circle"></p-avatar>
+          }
+          {{usuario()?.nombre}}
+          <p-button icon="pi pi-sign-out" [text]="true" (click)="logout()" [plain]="true"></p-button>
+        }
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>
+<router-outlet></router-outlet>
+<footer class="footer">
+  <p>Todos los derechos reservados &copy;RealG</p>
+  <div class="social-icons">
+    <span><a href="https://www.linkedin.com/in/jeremie-klose-chiclote-alva-043048224/" class="pi pi-linkedin" style="font-size: 2rem;color: rgb(242, 240, 243)"></a></span>
+    <span><a href="https://github.com/JhayAlva" class="pi pi-github" style="font-size: 2rem;color: rgb(242, 240, 243)"></a></span>
+    <span><a href="https://smallpdf.com/es/file#s=86dab921-06e6-4e52-858e-3f14e84f96ae" download="CV-JeremieKlose-DAW.pdf" class="pi pi-file-pdf" style="font-size: 2rem;color: rgb(242, 240, 243)"></a></span>
+  </div>
+</footer>
+
+

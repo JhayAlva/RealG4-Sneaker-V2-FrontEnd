@@ -1,0 +1,75 @@
+<div class="fadein animation-duration-1000 container flex flex-wrap">
+  <div class="col-12 md:col-5 mt-4 text-center" routerLink="/es-Es/home" style="cursor: pointer;">
+    <img src="../../../../assets/images/logo-realg.png" width="400" class="img-responsive" />
+  </div>
+  <hr class="vertical-hr hidden-sm">
+  <div class="col-12 md:col-6 mr-4">
+    <h1>Registro</h1>
+    <form [formGroup]="formRegistro" (ngSubmit)="registro()">
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <input pInputText formControlName="nombre" id="name"/>
+          <label for="name">Nombre</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-2">
+        <span *ngIf="isValidField('nombre')" class="form-text text-danger">
+          Debe de tener más de 3 caracteres
+        </span>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <input pInputText formControlName="apellidos" id="apellido"/>
+          <label for="apellido">Apellidos</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-2">
+        <span *ngIf="isValidField('apellidos')" class="form-text text-danger">
+          Debe de tener más de 3 caracteres
+        </span>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <input pInputText formControlName="email" id="email"/>
+          <label for="email">Email</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <input pInputText formControlName="email2" id="repEmail"/>
+          <label for="repEmail">Repetir email</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-2">
+        <span *ngIf="isValidField('email2')" class="form-text text-danger">
+          Los emails deben de ser iguales
+        </span>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <p-password [toggleMask]="true" formControlName="password" [feedback]="false"/>
+          <label for="password">Contraseña</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-floatLabel>
+          <p-password [toggleMask]="true" formControlName="password2" [feedback]="false"/>
+          <label for="password">Repetir contraseña</label>
+        </p-floatLabel>
+      </div>
+      <div class="card flex justify-content-center mt-2">
+        <span *ngIf="isValidField('password2')" class="form-text text-danger">
+          Las contraseñas deben de ser iguales
+        </span>
+      </div>
+      <div class="card flex justify-content-center mt-5">
+        <p-button [disabled]="formRegistro.invalid" type="submit" label="Registrarse" />
+      </div>
+      <div class="card flex justify-content-center mt-2">
+        <p>¿Ya tienes una cuenta? <a routerLink="/auth/login">Logueate</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+

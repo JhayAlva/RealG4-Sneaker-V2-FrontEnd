@@ -1,0 +1,56 @@
+.carousel {
+  display: flex;
+  overflow-x: auto; /* Permitir desplazamiento horizontal si hay más elementos que caben en la pantalla */
+  background: #1a1a1a; /* Fondo oscuro para contrastar con el contenido */
+  padding: 20px; /* Espaciado alrededor del carrusel */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  justify-content: center;
+
+}
+
+.carousel-cell {
+  flex: 0 0 auto;
+  width: 300px;
+  margin-right: 20px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.carousel-cell:hover {
+  transform: translateY(-10px);
+}
+
+.carousel-cell img {
+  width: 100%; /* Ancho completo para la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  display: block;
+}
+
+
+.carousel-cell h1, .carousel-cell p {
+  text-align: center;
+}
+
+.carousel-cell h1 {
+  font-size: 1.2em;
+  margin: 15px 0;
+  color: #333;
+}
+
+.carousel-cell p {
+  font-size: 0.9em;
+  margin: 0 15px 15px;
+  color: #666;
+}
+
+
+@media (max-width: 768px) {
+  .carousel {
+    justify-content: flex-start; /* Alineado a la izquierda en dispositivos móviles */
+  }
+}
+

@@ -1,0 +1,33 @@
+.carousel-container {
+  max-width: 100%;
+  height: 600px; /* Altura deseada */
+  margin: 20px auto;
+  overflow: hidden; /* Para ocultar el exceso de contenido si es necesario */
+}
+
+.carousel {
+  width: 100%;
+  height: 100%; /* Esto asegura que el carousel se ajuste al contenedor */
+}
+
+.carousel-cell {
+  width: 100%;
+  height: 100%; /* Ajustamos la altura de cada slide para que se ajuste al carousel */
+}
+
+.carousel-cell img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .carousel-container {
+    height: 140px; /* Reducimos la altura para dispositivos móviles */
+  }
+  ::ng-deep .flickity-prev-next-button {
+    font-size: 14px !important; /* Tamaño de la fuente */
+    width: 25px !important; /* Ancho del botón */
+    height: 25px !important; /* Altura del botón */
+  }
+}
+
+

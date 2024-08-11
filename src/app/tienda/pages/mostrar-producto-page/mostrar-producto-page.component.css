@@ -1,0 +1,93 @@
+.carousel-container {
+  text-align: center;
+}
+
+
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.selected-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.invisible-input {
+  visibility: hidden;
+}
+
+.slider-container {
+  margin-left: 5rem; /* Ajusta este valor para mover la barra más hacia la derecha */
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.last-sale {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.caracteristicas {
+  font-size: 16px;
+  color: #f8f8f8;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff0000;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+
+select {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+::ng-deep .ml-6 {
+  margin-left: 10rem !important;
+}
+
+
+
+@media only screen and (max-width: 991px) {
+  .grid {
+    display: block;
+  }
+  .col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

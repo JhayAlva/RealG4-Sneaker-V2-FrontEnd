@@ -1,0 +1,71 @@
+<div class="p-grid p-nogutter">
+  <div class="header p-col-12 p-d-flex p-ai-center p-jc-center">
+    <div class="profile-section p-text-center">
+      <img src="https://via.placeholder.com/100" alt="Foto de Usuario" class="profile-photo">
+      <h2>Nombre Apellido</h2>
+      <p>correo.com</p>
+    </div>
+  </div>
+
+  <div class="sidebar p-col-12 p-md-3 p-lg-2 p-shadow-2">
+    <p-menu [model]="items" styleClass="p-menu-custom"></p-menu>
+  </div>
+
+  <div class="content p-col-12 p-md-9 p-lg-10">
+    <section id="perfil" class="card p-p-3">
+      <h3>Perfil</h3>
+      <div class="p-field p-grid">
+        <label class="p-col-12 p-md-4">Nombre:</label>
+        <div class="p-col-12 p-md-8">
+          <input type="text" pInputText value="Nombre">
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label class="p-col-12 p-md-4">Apellidos:</label>
+        <div class="p-col-12 p-md-8">
+          <input type="text" pInputText value="Apellido">
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label class="p-col-12 p-md-4">Correo:</label>
+        <div class="p-col-12 p-md-8">
+          <input type="email" pInputText value="correo@ejemplo.com">
+        </div>
+      </div>
+      <div class="card-footer p-d-flex p-jc-end">
+        <button pButton type="button" label="Guardar Cambios" class="p-button-primary"></button>
+      </div>
+    </section>
+
+    <section id="direcciones" class="card p-p-3">
+      <h3>Direcciones</h3>
+      <p>Dirección 1: Calle Falsa 123, Ciudad, País</p>
+      <p>Dirección 2: Avenida Siempre Viva 742, Ciudad, País</p>
+      <div class="card-footer p-d-flex p-jc-end">
+        <button pButton type="button" label="Añadir Nueva Dirección" class="p-button-primary"></button>
+      </div>
+    </section>
+
+    <section id="compras" class="card p-p-3">
+      <h3>Mis Compras</h3>
+      <ul>
+        <li>Compra 1: 01/01/2024 - Producto X - $99.99</li>
+        <li>Compra 2: 05/01/2024 - Producto Y - $49.99</li>
+      </ul>
+      <div class="card-footer p-d-flex p-jc-end">
+        <button pButton type="button" label="Ver Todas" class="p-button-primary"></button>
+      </div>
+    </section>
+
+    <section id="favoritos" class="card p-p-3">
+      <h3>Favoritos</h3>
+      <ul>
+        <li>Producto Favorito 1 - $29.99</li>
+        <li>Producto Favorito 2 - $19.99</li>
+      </ul>
+      <div class="card-footer p-d-flex p-jc-end">
+        <button pButton type="button" label="Ver Todos" class="p-button-primary"></button>
+      </div>
+    </section>
+  </div>
+</div>

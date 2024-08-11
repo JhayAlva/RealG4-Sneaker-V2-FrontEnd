@@ -1,0 +1,30 @@
+.horizontal-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+.horizontal-scroll .item {
+  display: inline-block;
+  margin: 0 10px; /* Espacio entre elementos */
+  white-space: normal; /* Para evitar que las imágenes se solapen */
+  cursor: pointer;
+}
+
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Margen inferior de 20px */
+}
+
+.image-container {
+  max-width: 100%;
+  padding: 0 5px;
+}
+
+.image-container img {
+  display: block; /* Asegura que la imagen no tenga espacio extra por debajo */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}

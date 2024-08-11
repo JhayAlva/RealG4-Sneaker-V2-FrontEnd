@@ -1,0 +1,26 @@
+<div class="card" *ngIf="isLoadingProductos" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>
+
+<div class="product-list p-d-flex p-flex-wrap p-jc-center" *ngIf="!isLoadingProductos">
+  <div class="product p-mb-3 p-shadow-2" *ngFor="let item of productosResultado.slice(page * 6,(page + 1 )*6)">
+      <div class="product-info p-relative p-d-flex p-flex-column p-ai-center">
+          <div class="image-container">
+              <span class="favorite-icon">
+                  <a class="pi pi-heart" style="font-size: 1rem; color: rgb(255, 0, 0)"></a>
+              </span>
+              <img [src]="item.imagenes[0]" [alt]="item.nombre" class="product-image">
+          </div>
+          <h2 class="product-title p-mt-2">{{ item.nombre }}</h2>
+          <span style="color: grey;">Última venta</span>
+          <p class="product-price">{{ item.ultimaVenta | currency:'EUR':'symbol':'1.2-2' }}</p>
+      </div>
+  </div>
+</div>
+
+<p-paginator
+  (onPageChange)="onPageChange($event)"
+  [rows]="rows"
+  [totalRecords]="productosResultado.length"
+  [first]="page * rows"
+></p-paginator>

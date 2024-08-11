@@ -1,0 +1,28 @@
+<input type="text"
+#txtQuery
+(keyup)="onQueryChange(txtQuery.value,$event)"
+pInputText
+placeholder="Search" class="w-8rem sm:w-auto" />
+
+<div class="card flex justify-content-center gap-2">
+  <p-toast></p-toast>
+  <p-confirmPopup>
+    <ng-template pTemplate="content">
+      <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
+        <div *ngIf="isLoadingProductos">
+          <div class="card flex justify-content-center">
+            <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+          </div>
+        </div>
+        <ul class="lista-productos" *ngIf="!isLoadingProductos">
+          <li *ngFor="let item of productosResultado" class="producto" style="cursor: pointer;">
+            <div class="producto-contenido"  [routerLink]="['/es-Es/mostrar-producto',item._id]">
+              <img class="producto-imagen" [src]="item.imagenes[0]" alt="{{ item.nombre }}">
+              <h2 class="producto-nombre">{{ item.nombre }}</h2>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </p-confirmPopup>
+</div>

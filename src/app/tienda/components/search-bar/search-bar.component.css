@@ -1,0 +1,31 @@
+.lista-productos {
+  list-style-type: none;
+  padding: 0;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.producto-contenido {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.producto-nombre {
+  margin: 0 0 0 10px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.producto-imagen {
+  width: 80px; /* Ajusta el tamaño de la imagen según lo necesites */
+  height: auto;
+  border-radius: 5px;
+}
