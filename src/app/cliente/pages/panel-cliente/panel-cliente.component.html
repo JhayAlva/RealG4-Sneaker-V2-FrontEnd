@@ -1,0 +1,46 @@
+<div class="body">
+  <div class="container">
+    <div class="box">
+      <div id="avatarPerfil" class="avatar">
+        <input type="file" accept="image/*" id="selectorImagen" #inputimagen style="visibility: hidden;" (change)="PrevisualizarImagen(inputimagen)"/>
+        <a onclick="javascript: document.getElementById('selectorImagen').click()">
+        <img id="imagenUsuario" class="circle" style="height:250px; width:200px;" [src]="usuario()?.avatar || imgSrc" />
+        </a>
+      </div>
+      <h3 class="name">{{usuario()?.nombre }} {{usuario()?.apellidos}}</h3>
+      <div class="container-button">
+          <button type="button"
+          class="btn btn-link btn-sm"
+          id="botonUploadImagen"
+          #btnUploadImagen
+          appBotonuploadenabled
+          (click)="UploadImagen()"
+          disabled>+ Sube una foto</button>
+          <button type="button" [class.clicked]="cambiarComponente === 'misdatos'" class="styled-button" (click)="CambiarContenido('misdatos')"><i class="pi pi-user"></i> Mis datos</button>
+          <button type="button" [class.clicked]="cambiarComponente === 'opiniones'" class="styled-button" (click)="CambiarContenido('opiniones')"><i class="pi pi-comment"></i> Opiniones</button>
+          <button type="button" [class.clicked]="cambiarComponente === 'direcciones'" class="styled-button" (click)="CambiarContenido('direcciones')"><i class="pi pi-home"></i> Direcciones</button>
+          <button type="button" [class.clicked]="cambiarComponente === 'compras'" class="styled-button" (click)="CambiarContenido('compras')"><i class="pi pi-cart-plus"></i> Compras</button>
+          <button type="button" [class.clicked]="cambiarComponente === 'favoritos'" class="styled-button" (click)="CambiarContenido('favoritos')"><i class="pi pi-heart"></i> Favoritos</button>
+
+      </div>
+    </div>
+    <div class="box2">
+      <div *ngIf="this.cambiarComponente == 'misdatos'">
+         <app-mis-datos></app-mis-datos>
+      </div>
+      <div *ngIf="this.cambiarComponente == 'opiniones'">
+        <app-mis-opiniones></app-mis-opiniones>
+      </div>
+      <div *ngIf="this.cambiarComponente == 'direcciones'">
+        <app-mis-direcciones></app-mis-direcciones>
+      </div>
+      <div *ngIf="this.cambiarComponente == 'compras'">
+        <app-mis-compras></app-mis-compras>
+      </div>
+      <div *ngIf="this.cambiarComponente == 'favoritos'">
+        <app-mis-favoritos></app-mis-favoritos>
+      </div>
+    </div>
+  </div>
+</div>
+

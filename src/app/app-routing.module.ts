@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren:()=>import('./tienda/tienda.module').then(t=>t.TiendaModule)
   },
   {
+    path:'cliente',
+    loadChildren:()=>import('./cliente/cliente.module').then(c=>c.ClienteModule)
+  },
+  {
     path:'**',
     redirectTo:'auth'
   }

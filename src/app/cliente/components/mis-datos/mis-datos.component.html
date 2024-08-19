@@ -1,0 +1,62 @@
+<h2>Perfil</h2>
+<hr>
+<div class="p-d-flex p-jc-center p-mt-5">
+  <!-- Contenedor del formulario -->
+  <div class="p-grid p-fluid p-col-12 p-md-10 p-lg-8 p-shadow-3 p-p-4">
+    <form [formGroup]="formIniciopanel" (ngSubmit)="UpdateDatosCliente()">
+
+      <!-- Fila 1: Nombre y Apellidos -->
+      <div class="p-d-flex p-flex-wrap p-mb-3">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" pInputText name="nombre" formControlName="nombre" />
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" type="text" pInputText name="apellidos" formControlName="apellidos" />
+        </div>
+      </div>
+
+      <!-- Fila 2: Teléfono y Email -->
+      <div class="p-d-flex p-flex-wrap p-mb-3">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" type="text" pInputText name="telefono" formControlName="telefono" />
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="email">Email</label>
+          <input id="email" type="email" pInputText name="email" formControlName="email" />
+        </div>
+      </div>
+
+      <!-- Fila 3: Fecha de Nacimiento -->
+      <div class="p-d-flex p-flex-wrap p-mb-3">
+        <div class="p-field p-col-12 p-md-4">
+          <label for="dia">Día</label>
+          <input id="dia" type="number" placeholder="Día" pInputText name="dia" formControlName="dia" min="1" step="1" />
+        </div>
+        <div class="p-field p-col-12 p-md-4">
+          <label for="mes">Mes</label>
+          <input id="mes" type="number" placeholder="Mes" pInputText name="mes" formControlName="mes" min="1" max="12" step="1" />
+        </div>
+        <div class="p-field p-col-12 p-md-4">
+          <label for="anio">Año</label>
+          <input id="anio" type="number" placeholder="Año" pInputText name="anio" formControlName="anio" [attr.max]="this.anioActual" min="1900" step="1"/>
+        </div>
+      </div>
+
+      <!-- Fila 4: Contraseña -->
+      <div class="p-d-flex p-flex-wrap p-mb-3">
+        <div class="p-field p-col-12">
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" pInputText formControlName="password" />
+        </div>
+      </div>
+
+      <!-- Botón Enviar en la esquina inferior derecha -->
+      <div class="p-d-flex p-jc-end">
+        <button pButton type="submit" label="Enviar" class="p-button-danger p-mt-2"></button>
+      </div>
+    </form>
+  </div>
+</div>

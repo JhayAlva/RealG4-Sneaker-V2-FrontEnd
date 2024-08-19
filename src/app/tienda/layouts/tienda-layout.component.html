@@ -37,7 +37,7 @@
             size="normal"
             shape="circle"></p-avatar>
           }
-          {{usuario()?.nombre}}
+          <span routerLink="/cliente/panel-cliente">{{usuario()?.nombre}}</span>
           <p-button icon="pi pi-sign-out" [text]="true" (click)="logout()" [plain]="true"></p-button>
         }
       </div>

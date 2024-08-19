@@ -7,6 +7,7 @@ import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { RegistroResponse } from '../interfaces/registro-response';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { CheckTokenResponse } from '../interfaces/check-token';
+import { UploadResponse } from '../../cliente/interfaces/upload-imagen-response';
 
 
 @Injectable({
@@ -53,6 +54,19 @@ export class AuthService {
     const body ={email,password}
 
     return this.http.post<LoginResponse>(url,body)
+               .pipe(
+                  map( ({user,token}) => this.setAuthentication(user,token)),
+                  //Todo:Manejo de errores
+                  catchError( err => throwError( ()=> err.error.message )
+                )
+               );
+  }
+
+  uploadImagenUser(imagenBase64:string,email:string,id:string):Observable<boolean>{
+    const url = `${this.baseUrl}/auth/uploadImagen`;
+    const body ={imagenBase64,email,id}
+
+    return this.http.post<UploadResponse>(url,body)
                .pipe(
                   map( ({user,token}) => this.setAuthentication(user,token)),
                   //Todo:Manejo de errores

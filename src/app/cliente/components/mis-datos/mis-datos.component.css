@@ -1,0 +1,30 @@
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+.p-field label {
+  font-weight: bold;
+}
+
+.p-field input {
+  font-size: 1rem;
+}
+
+.p-d-flex.p-flex-wrap {
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .p-d-flex.p-jc-between {
+    flex-direction: column;
+  }
+
+  .p-d-flex.p-jc-end {
+    justify-content: center;
+  }
+}
