@@ -1,0 +1,107 @@
+/* Contenedor principal */
+.container-card {
+  display: flex; /* Alinea la tarjeta y el speed dial en una fila */
+  justify-content: space-between; /* Deja espacio entre los elementos */
+  background: #1e1e1e;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mini-map {
+  flex: 1 1 40%;
+  height: 150px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.body-card {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.body-card h2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.body-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* Contenedor del Speed Dial */
+.container-button {
+  display: flex; /* Asegura que el speed dial esté alineado con el contenido */
+  align-items: flex-start; /* Alinea el botón con la parte superior de la tarjeta */
+  margin-top: 20px;
+}
+
+::ng-deep .p-speeddial {
+  position: static; /* Evita que se superponga en la tarjeta */
+  display: flex;
+  justify-content: flex-start;
+}
+
+::ng-deep .p-speeddial .p-speeddial-button {
+  background: #fd0101;
+  color: black;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+::ng-deep .p-speeddial .p-speeddial-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container-card {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .mini-map {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  .body-card {
+    width: 100%;
+  }
+
+  .container-button {
+    margin-top: 15px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-card {
+    padding: 10px;
+  }
+
+  .body-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .body-card p {
+    font-size: 0.9rem;
+  }
+}

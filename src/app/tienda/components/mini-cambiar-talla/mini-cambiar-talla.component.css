@@ -1,0 +1,44 @@
+.dropdown-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  background-color: #121212; /* Fondo oscuro para la lista */
+}
+
+.mini-tarjeta {
+  border: 1px solid #444; /* Bordes más oscuros */
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #1E1E1E; /* Fondo oscuro para las tarjetas */
+  color: #E0E0E0; /* Texto claro para contrastar con el fondo */
+}
+
+.mini-tarjeta a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffffc9; /* Color de enlace en modo nocturno */
+}
+
+.price {
+  color: #66e200; /* Ajuste de color para la clase price */
+}
+
+.boton-atras{
+  font-family: "SuisseIntl-Regular", sans-serif;
+  padding: 10px;
+  border: 1px solid;
+  background: transparent;
+  border-color: #E0E0E0; /* Bordes claros para el botón */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+  color: #E0E0E0; /* Color de texto claro */
+}
+
+.boton-atras:hover{
+  background-color: #333; /* Fondo oscuro al pasar el mouse */
+  color: #FFFFFF; /* Texto blanco al pasar el mouse */
+}

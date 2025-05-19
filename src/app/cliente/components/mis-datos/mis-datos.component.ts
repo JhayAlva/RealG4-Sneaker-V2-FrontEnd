@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-mis-datos',
@@ -7,20 +8,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './mis-datos.component.css'
 })
 export class MisDatosComponent {
-  public anioActual: number = new Date().getFullYear();
+
+  public usuarioLogeado = computed(() => this.authSvc.currentUser());
+  public dias: Array<number> = Array.from({ length: 31 }, (_, pos) => pos + 1);
+  public meses: Array<string> = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
+  public anios: Array<number> = Array.from(
+    { length: new Date().getFullYear() - 1933 },
+    (_, pos) => pos + 1934
+  );
+
   public formIniciopanel:FormGroup = this.fb.group({
-    email: ['',[Validators.required,Validators.email]],
-    nombre:['',[Validators.required,Validators.minLength(3)]],
-    apellidos:['',[Validators.required,Validators.minLength(3)]],
+    email: [{value: this.usuarioLogeado()?.email,disabled:true},[Validators.required,Validators.email]],
+    nombre:[this.usuarioLogeado()?.nombre,[Validators.required,Validators.minLength(3)]],
+    apellidos:[this.usuarioLogeado()?.apellidos,[Validators.required,Validators.minLength(3)]],
     telefono:['',[Validators.required,Validators.pattern('^[0-9]{3}\\s?([0-9]{2}\\s?){3}$')]],
     password:['',[Validators.required,Validators.minLength(6)]],
-    dia:['',[Validators.required,Validators.minLength(1)]],
-    mes:['',[Validators.required,Validators.minLength(1)]],
-    anio:['',[Validators.required,Validators.minLength(1900), Validators.max(this.anioActual)]]
+    newpassword:['',[Validators.required,Validators.minLength(6)]],
+    dia:['',[Validators.required]],
+    mes:['',[Validators.required]],
+    anio:['',[Validators.required]]
   });
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private authSvc:AuthService){}
 
-  UpdateDatosCliente(){}
+  UpdateDatosCliente(){
+   console.log(this.formIniciopanel.value);
+  }
 
 }

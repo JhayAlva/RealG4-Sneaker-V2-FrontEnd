@@ -1,0 +1,9 @@
+<div class="search-results">
+  <ul class="list-group" *ngIf="places.length > 0">
+    <li *ngFor="let place of places"
+      class="list-group-item" (click)="obtenerInfoDirec(place)">
+      <h6 class="place-title">{{ place.text }}</h6>
+      <p class="place-address">{{ place.place_name }}</p>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,129 @@
+.talla {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Texto claro */
+  font-family: "SuisseIntl-Medium", sans-serif;
+  font-size: small;
+  padding: 10px;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.talla-info {
+  display: flex; /* Alinea los elementos dentro de este div uno al lado del otro */
+  align-items: center;
+}
+
+.talla p + p {
+  margin-left: 5px; /* Agrega espacio entre los dos párrafos */
+}
+
+.talla-numero::before {
+  content: '"';
+  margin-right: 5px;
+}
+
+.precio {
+  font-family: "SuisseIntl-Medium", sans-serif;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Texto claro */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.precio p {
+  margin: 0;
+}
+
+.precio-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.precio-info p {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.precio-info strong {
+  font-size: clamp(24px, calc(0.7407407407vw + 21.3333333333px), 32px);
+}
+
+.metodoPago {
+  display: flex;
+  font-family: "SuisseIntl-Medium", sans-serif;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Texto claro */
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.direccion {
+  display: flex;
+  font-family: "SuisseIntl-Medium", sans-serif;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Texto claro */
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.metodoPago, .direccion {
+  margin-bottom: 3px;
+}
+
+.botones {
+  text-align: left; /* Alinea los botones a la izquierda */
+}
+
+.boton-siguiente {
+  font-family: "SuisseIntl-Regular", sans-serif;
+  padding: 10px;
+  float: right;
+  background-color: rgb(184, 2, 2);
+  color: white;
+  border: 1px solid #fff; /* Cambiado a blanco para contraste */
+  font-size: 1rem;
+  transition: color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.boton-siguiente:hover {
+  background-color: rgb(8, 2, 2);
+  color: white;
+}
+
+.boton-atras {
+  font-family: "SuisseIntl-Regular", sans-serif;
+  padding: 10px;
+  border: 1px solid;
+  background: transparent;
+  border-color: #fff; /* Cambiado a blanco para contraste */
+  color: white; /* Texto claro */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.boton-atras:hover {
+  background-color: rgb(8, 2, 2);
+  color: white;
+}
+
+.botones-info {
+  color: rgb(190, 10, 10);
+  font-family: "SuisseIntl-Regular", sans-serif;
+  font-size: small;
+  border: none;
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: white; /* Texto claro */
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.botones-info:hover {
+  color: white;
+  background-color: rgb(190, 10, 10);
+}

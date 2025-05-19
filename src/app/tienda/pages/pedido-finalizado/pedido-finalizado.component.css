@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+  background-color: #121212; /* Fondo oscuro para la contenedor */
+}
+
+.producto {
+  width: 48%;
+}
+
+.name-producto {
+  text-align: center; /* Centra el texto horizontalmente */
+  font-size: clamp(22px, calc(0.1877934272vw + 21.2957746479px), 24px);
+  line-height: 1.25;
+  color: #E0E0E0; /* Texto gris claro para buena legibilidad */
+}
+
+.size-info {
+  font-family: "SuisseIntl-Medium", sans-serif;
+  line-height: 1.375;
+  font-size: 12px;
+  letter-spacing: 0.004rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  background-color: #333333; /* Fondo gris oscuro */
+  color: #E0E0E0; /* Texto gris claro */
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 16%;
+  margin-left: auto; /* Centra horizontalmente */
+  margin-right: auto; /* Centra horizontalmente */
+}
+
+.size-info p:last-child::before {
+  content: '\00a0'; /* Inserta un espacio no rompible antes del texto */
+  white-space: nowrap;
+}
+
+.size-info p {
+  margin: 0; /* Elimina los márgenes predeterminados de los elementos de información de tamaño */
+}
+
+.producto-info {
+  margin: 0; /* Elimina el margen superior del título */
+}
+
+.detalles {
+  width: 45%;
+  background: #1E1E1E; /* Fondo más oscuro para la sección de detalles */
+  padding: 10px;
+  color: #E0E0E0; /* Texto gris claro */
+}
+
+.detalles ul {
+  padding: 15px; /* Reducido el padding de la lista */
+  font-size: 14px;
+  margin-top: 5px; /* Ajusta según sea necesario para controlar el espacio sobre la lista */
+  margin-bottom: 5px; /* Ajusta según sea necesario para controlar el espacio debajo de la lista */
+}

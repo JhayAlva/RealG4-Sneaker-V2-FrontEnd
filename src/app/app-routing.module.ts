@@ -15,6 +15,7 @@ const routes: Routes = [
   },
   {
     path:'cliente',
+    // canActivate:[isAuthenticatedGuard],
     loadChildren:()=>import('./cliente/cliente.module').then(c=>c.ClienteModule)
   },
   {

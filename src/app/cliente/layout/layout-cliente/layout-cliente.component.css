@@ -1,0 +1,52 @@
+/* layoutCliente.component.css */
+
+/* Estilos para el nav-bar */
+.navbar {
+  background-color: #1e1e1e; /* Color de fondo del nav-bar */
+  padding: 10px 0; /* Espacio arriba y abajo */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px; /* Ajusta la altura del logo según sea necesario */
+  width: auto; /* Mantiene la proporción del logo */
+  cursor: pointer;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #1e1e1e; /* Color de fondo del footer */
+  color: #fff; /* Color del texto */
+  padding: 20px 0; /* Espacio arriba y abajo */
+  text-align: center; /* Centra el texto */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .logo {
+    height: 40px; /* Ajusta la altura del logo para pantallas más pequeñas */
+  }
+
+  footer {
+    padding: 15px 0; /* Reduce el padding para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 30px; /* Ajusta aún más la altura del logo para pantallas muy pequeñas */
+  }
+
+  footer {
+    padding: 10px 0; /* Reduce el padding aún más para pantallas muy pequeñas */
+  }
+}

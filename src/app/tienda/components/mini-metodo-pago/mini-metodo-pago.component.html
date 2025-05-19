@@ -1,0 +1,81 @@
+<div class="surface-card p-4 shadow-2 border-round">
+  <h2 class="text-900 text-center mb-4">Método de Pago</h2>
+
+  <!-- Sección de botones de método de pago -->
+  <div class="flex justify-content-center mb-4">
+    <div class="flex align-items-center gap-4">
+      <div class="p-card p-3 shadow-2 cursor-pointer border-round align-items-center justify-content-center" (click)="seleccionarMetodo('tarjeta')"
+        [ngClass]="{'border-primary': metodoSeleccionado === 'tarjeta'}">
+        <img src="../../../../assets/images/logo-pagotarjeta.png" alt="Pago con tarjeta" class="w-6rem h-4rem object-contain">
+        <p class="text-center mt-2">Tarjeta de Crédito</p>
+      </div>
+
+      <div class="p-card p-3 shadow-2 cursor-pointer border-round" (click)="seleccionarMetodo('paypal')"
+        [ngClass]="{'border-primary': metodoSeleccionado === 'paypal'}">
+        <img src="../../../../assets/images/paypal-logo.webp" alt="Pago con PayPal" class="w-6rem h-4rem object-contain">
+        <p class="text-center mt-2">PayPal</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario de pago con tarjeta de crédito -->
+  <div *ngIf="metodoSeleccionado === 'tarjeta'">
+    <div class="grid formgrid p-fluid">
+      <div class="col-12 mb-3">
+        <label for="nombreTarjeta" class="block">Nombre en la tarjeta</label>
+        <input pInputText [(ngModel)]="datosPago.titularTarjeta"
+        id="nombreTarjeta"
+        placeholder="Nombre en la tarjeta"
+        class="p-inputtext w-full" />
+      </div>
+
+      <div class="col-6 mb-3">
+        <label for="numeroTarjeta" class="block">Número de la tarjeta</label>
+        <input pInputText [(ngModel)]="datosPago.numeroTarjeta"
+        (blur)="onCardNumberChange()"
+        id="numeroTarjeta"
+        maxlength="16"
+        placeholder="1234 5678 9012 3456"
+        class="p-inputtext w-full" />
+      </div>
+      <div *ngIf="cardNumberError && cardNumberTouched" class="error-message col-12 mb-3">
+        Número de tarjeta inválido.
+      </div>
+      <div class="col-6 mb-3">
+        <label for="fechaExp" class="block">Fecha de expiración</label>
+        <input pInputText maxlength="7" (input)="autoFormatMonth()"
+              (keydown)="validateInput($event)"
+              [(ngModel)]="datosPago.fechaCaducidad"
+              id="fechaExp"
+              placeholder="MM/AAAA"
+              class="p-inputtext w-full" />
+      </div>
+      <div *ngIf="fechaCaducidadError" class="error-message col-12 mb-3">
+        Fecha de Caducidad invalida.
+      </div>
+      <div class="col-6 mb-3">
+        <label for="cvv" class="block">CVV</label>
+        <input pInputText id="cvv"
+        [(ngModel)]="datosPago.cvv"
+        (blur)="onCvvBlur()"
+        placeholder="123"
+        maxlength="4"
+        class="p-inputtext w-full"/>
+      </div>
+      <div *ngIf="cvvError" class="error-message col-12 mb-3">
+        CVV inválido.
+      </div>
+    </div>
+  </div>
+
+  <!-- Información de pago con PayPal -->
+  <div *ngIf="metodoSeleccionado === 'paypal'" class="text-center">
+    <p class="text-600">Serás redirigido a PayPal para completar tu pago.</p>
+  </div>
+
+  <!-- Botón de confirmación -->
+  <div class="flex justify-content-center mt-4">
+    <button (click)="ParaAtras()" pButton label="Cancelar" class="p-button-primary mr-3"></button>
+    <button pButton [disabled]="!formValid()" (click)="submit()" label="Confirmar Pago" class="p-button-primary mr-3"></button>
+  </div>
+</div>

@@ -1,1 +1,43 @@
-<p>mis-compras works!</p>
+<div class="container">
+  <h1>Mis Compras</h1>
+
+  <!-- Spinner cuando los pedidos están vacíos o cargando -->
+  <div *ngIf="isLoading || pedidos.length === 0" class="spinner-container">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+
+  <!-- Mostrar los pedidos solo cuando están disponibles -->
+  <div *ngIf="!isLoading && pedidos.length > 0">
+    <div class="data-view" *ngFor="let producto of pedidos.slice(page * 3, (page + 1) * 3)">
+      <div class="pedido" *ngFor="let product of producto.elementosPedido">
+        <div class="pedido-item">
+          <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+            src="{{ product.productoItem.imagenes[0] }}" alt="{{ product.productoItem.nombre }}" />
+          <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+            <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+              <h2 class="text-2xl font-bold text-900">{{ product.productoItem.nombre }}</h2>
+              <p-rating [(ngModel)]="product.productoItem.valoracionGeneral" [readonly]="true" [cancel]="false"></p-rating>
+              <div class="flex align-items-center gap-3">
+                <span class="flex align-items-center gap-2">
+                  <span class="font-semibold"><i class="pi pi-tag"></i> {{ producto.tallaSeleccionado }}</span>
+                </span>
+                <p-tag [value]="producto.estadoPedido" [severity]="getSeverity(producto.estadoPedido)"></p-tag>
+              </div>
+            </div>
+          </div>
+          <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2 justify-content-end">
+            <span class="text-2xl font-semibold">{{ '€' + producto.totalPedido }}</span>
+            <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
+              (click)="comprarDeNuevo(product.productoItem._id)"></button>
+            <button pButton icon="pi pi-file-pdf" (click)="descargarPdf(producto)" class="md:align-self-end mb-2 p-button-rounded"
+              [disabled]="producto.estadoPedido === 'En preparacion' || producto.estadoPedido === 'Cancelado' "></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<p-paginator (onPageChange)="onPageChange($event)" [rows]="3" [totalRecords]="pedidos.length"
+  [first]="page * 3"></p-paginator>

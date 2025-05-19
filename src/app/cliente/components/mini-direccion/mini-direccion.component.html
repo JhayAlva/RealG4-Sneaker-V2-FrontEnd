@@ -1,0 +1,17 @@
+<div class="container-card">
+  <div class="mini-map">
+    <app-mini-map [lngLat]="this.direcMostrar.longitudAndLatitud"></app-mini-map>
+  </div>
+  <div class="body-card">
+    <h2>{{this.direcMostrar.datosEnvio.nombre}} {{this.direcMostrar.datosEnvio.apellidos}}</h2>
+    <p>{{this.direcMostrar.calle}}</p>
+    <p>{{this.direcMostrar.cp}}, {{this.direcMostrar.municipio.DMUN50}}</p>
+    <p>{{this.direcMostrar.provincia.PRO}}, {{this.direcMostrar.pais}}</p>
+    <p>+34 {{this.direcMostrar.datosEnvio.telefono}}</p>
+  </div>
+  <div class="container-button">
+      <p-speedDial [model]="items" direction="down" showIcon="pi pi-bars" hideIcon="pi pi-times" buttonClassName="p-button-outlined"></p-speedDial>
+  </div>
+</div>
+
+

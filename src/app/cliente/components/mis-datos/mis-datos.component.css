@@ -1,30 +1,108 @@
+/* Estilos generales */
 h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.p-field {
-  margin-bottom: 1rem;
+hr {
+  border: 1px solid #444;
 }
 
-.p-field label {
+/* Contenedor del formulario */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Fila del formulario */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Grupo de formulario */
+.form-group {
+  flex: 1;
+  min-width: 250px;
+  margin-right: 20px;
+}
+
+/* Para la última columna, eliminar el margen derecho */
+.form-group:last-child {
+  margin-right: 0;
+}
+
+/* Campos del formulario */
+label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
-.p-field input {
-  font-size: 1rem;
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+  box-sizing: border-box;
 }
 
-.p-d-flex.p-flex-wrap {
-  gap: 1rem;
+input:disabled {
+  background-color: #000000; /* Color de fondo más claro */
+  color: #a0a0a0; /* Color del texto más claro */
+  cursor: not-allowed; /* Cambia el cursor para mostrar que no se puede interactuar */
+  border: 1px solid #979797; /* Borde más suave */
 }
 
-@media (max-width: 768px) {
-  .p-d-flex.p-jc-between {
-    flex-direction: column;
+
+
+/* Campo de contraseña a ancho completo */
+.full-width {
+  flex: 0 0 100%;
+  margin-right: 0;
+}
+
+/* Botón de envío */
+.submit-btn {
+  display: inline-block;
+  padding: 8px 20px; /* Tamaño más pequeño */
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: auto; /* Alinea a la izquierda */
+}
+
+.submit-btn:hover {
+  background-color: #000000;
+  color: white;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .form-row {
+      flex-direction: column;
   }
 
-  .p-d-flex.p-jc-end {
-    justify-content: center;
+  .form-group {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+
+  .form-group.full-width {
+      margin-bottom: 0;
+  }
+
+  .submit-btn {
+      width: 100%;
+      margin: 0;
   }
 }

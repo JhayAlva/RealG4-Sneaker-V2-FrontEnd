@@ -1,8 +1,11 @@
+import { FinalizarPedidoResp } from './../interfaces/finalizarPedido-response.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProducto } from '../interfaces/producto.interface';
 import { environment } from '../../../environments/environments';
-import { Observable, delay, map } from 'rxjs';
+import { Observable, catchError, delay, lastValueFrom, map, tap, throwError } from 'rxjs';
+import { IPedido } from '../interfaces/pedido.interface';
+import { IDatosPago } from '../interfaces/datosPago.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +57,33 @@ export class TiendaService {
     }
   }
 
+  RecuperarProductosJordan11(path:String):Promise<Array<IProducto>>{
+    return lastValueFrom(
+      this.http.get<Array<IProducto>>(`${this.baseUrl}/tienda/RecuperarProductosJordan11?path=${path}`)
+    );
+  }
+
+  FinalizarPedido(newPedido:IPedido,datosPago:IDatosPago,metodoPago:string):Observable<FinalizarPedidoResp>{
+    console.log('Entro aqui', newPedido , datosPago, metodoPago);
+    const url =`${this.baseUrl}/auth/FinalizarPedidoCliente`;
+    const body = {newPedido,datosPago,metodoPago};
+    return this.http.post<FinalizarPedidoResp>(url,body)
+                    .pipe(
+                      tap(resp =>{
+                        if (resp.approvalUrl) {
+                          // Redirigir al usuario a la URL de aprobación de PayPal
+                          window.location.href = resp.approvalUrl;
+                        }
+                      }),
+                      catchError( err => throwError( ()=> err.error.message ))
+                    )
+  }
+
+  getPedidoCliente(idPedido:string):Promise<IPedido>{
+    return lastValueFrom(
+      this.http.get<IPedido>(`${this.baseUrl}/auth/GetPedidoCliente/${idPedido}`)
+    );
+  }
 
   // deleteProductos(){
   //   this.resultProductos=[];

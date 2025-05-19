@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="producto" *ngIf="pedidoRealizado as pedido">
+    <div *ngFor="let item of pedido.elementosPedido">
+      <div class="producto-info">
+        <h2 class="name-producto">{{item.productoItem.nombre}}</h2>
+        <div class="size-info">
+          <p>Size: </p>
+          <p>{{this.tallaSelected}}</p>
+        </div>
+        <img [src]="item.productoItem.imagenes[0]" width="110%">
+      </div>
+    </div>
+  </div>
+  <div class="detalles">
+    <h1>Orden Confirmada</h1>
+    <p>El total de tu orden es <strong>€{{this.pedidoRealizado?.totalPedido}}</strong></p>
+    <strong>Recordar</strong>
+    <div class="ul-container">
+      <ul>
+        <li>REALG4 tiene 30 dias habiles completos para enviar su articulo. Los fines de semana y festivos no son días hábiles</li>
+        <br>
+        <li>Nuestros autenticadores expertos verificán el producto antes de su respectivo envío.</li>
+        <br>
+        <li>Recibirá un número de seguimiento tan pronto como su artículo salga del centro de autenticación de REALG4</li>
+      </ul>
+    </div>
+    <br><br><br>
+    <div style="text-align: center;">
+      <img src="../../../../assets/images/logo-no-background.png" width="50%">
+    </div>
+  </div>
+</div>

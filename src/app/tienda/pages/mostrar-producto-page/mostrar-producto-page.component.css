@@ -1,57 +1,198 @@
+/* Fondo oscuro y colores de texto claros */
+body {
+  background-color: #121212; /* Fondo oscuro para la página */
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Estilos para el contenedor del carrusel */
 .carousel-container {
   text-align: center;
 }
 
-
+/* Ajustes para las imágenes del producto */
 .product-image {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
+/* Contenedor de la imagen seleccionada */
 .selected-image img {
   max-width: 100%;
   height: auto;
 }
 
+/* Flexbox layout para secciones */
 .flex {
   display: flex;
   flex-direction: column;
   align-items: start;
 }
 
+/* Margen superior */
 .mt-3 {
   margin-top: 1rem;
 }
 
+/* Ancho completo */
 .w-full {
   width: 100%;
 }
 
+/* Input invisible */
 .invisible-input {
   visibility: hidden;
 }
 
+/* Contenedor del slider */
 .slider-container {
-  margin-left: 5rem; /* Ajusta este valor para mover la barra más hacia la derecha */
+  margin-left: 5rem; /* Ajusta este valor según sea necesario */
 }
 
+/* Selector de tamaño */
+.size-selector {
+  display: flex;
+  align-items: center;
+}
+
+/* Etiqueta de opción */
+.option-label {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+/* Dropdown personalizado */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón del dropdown */
+.dropdown-button {
+  background-color: #1f1f1f; /* Fondo oscuro */
+  border: 1px solid #333; /* Borde oscuro */
+  padding: 6px 12px; /* Menos padding para un tamaño más compacto */
+  border-radius: 4px;
+  cursor: pointer;
+  width: 200px; /* Ancho reducido para hacerlo más delgado */
+  text-align: left;
+  display: flex;
+  justify-content: space-between; /* Alinea el texto y el ícono */
+  align-items: center;
+  margin-bottom: 8px; /* Menos margen inferior */
+  color: #e0e0e0; /* Texto claro */
+  font-size: 14px; /* Tamaño de fuente reducido */
+}
+
+/* Contenido del dropdown */
+.dropdown-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espacio entre el tamaño y el ícono */
+}
+
+/* Contenedor del tamaño del número */
+.numero-talla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 8px; /* Menos padding para una presentación más ajustada */
+}
+
+/* Lista del dropdown */
+.dropdown-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Ajusta automáticamente el número de columnas */
+  gap: 8px; /* Espacio reducido entre los elementos */
+  list-style: none;
+  padding: 8px; /* Espacio interno reducido */
+  margin: 0;
+  background-color: #1f1f1f; /* Fondo oscuro */
+  border: 1px solid #333; /* Borde oscuro */
+  border-radius: 4px; /* Bordes redondeados */
+  max-height: 300px; /* Altura máxima para hacerlo largo */
+  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es mayor */
+}
+
+/* Mini tarjeta para las opciones del dropdown */
+.mini-tarjeta {
+  border: 1px solid #333; /* Borde oscuro */
+  padding: 6px 8px; /* Menos padding para un tamaño más compacto */
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #2c2c2c; /* Fondo ligeramente más claro para contraste */
+  cursor: pointer;
+  transition: background-color 0.2s; /* Transición suave para el hover */
+}
+
+/* Cambio de color al pasar el ratón sobre una mini-tarjeta */
+.mini-tarjeta:hover {
+  background-color: #3c3c3c; /* Color de fondo más claro al pasar el ratón */
+}
+
+/* Enlaces en las mini tarjetas */
+.mini-tarjeta a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Media Queries para Responsividad */
+@media only screen and (max-width: 768px) {
+  .dropdown-button {
+    width: 100%; /* Ancho completo en pantallas pequeñas */
+  }
+
+  .dropdown-list {
+    max-height: 200px; /* Altura máxima reducida para pantallas más pequeñas */
+  }
+}
+
+/* Precio */
 .price {
   font-size: 24px;
   font-weight: bold;
   color: #27ae60;
 }
 
+/* Información del producto */
+.info {
+  display: flex;
+  align-items: center; /* Centra los elementos horizontalmente */
+  font-size: 14px;
+}
+
+/* Elementos dentro del div de información */
+.info-item {
+  margin: 0 1px; /* Espacio horizontal entre los elementos */
+}
+
+/* Espacios en los spans dentro de los elementos */
+.info-item span {
+  margin: 0px 0px;
+}
+
+/* Precio en color verde */
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* Venta reciente en color gris */
 .last-sale {
   font-size: 16px;
   color: #7f8c8d;
 }
 
+/* Características en color gris claro */
 .caracteristicas {
   font-size: 16px;
-  color: #f8f8f8;
+  color: #b0b0b0;
 }
 
+/* Botón principal */
 .button {
   display: inline-block;
   padding: 10px 20px;
@@ -64,24 +205,20 @@
   transition: background-color 0.3s;
 }
 
+/* Efecto hover del botón */
 .button:hover {
   background-color: #ffffff;
   color: black;
 }
 
-
+/* Estilos para select */
 select {
   width: 70%;
   padding: 10px;
   margin-bottom: 20px;
 }
 
-::ng-deep .ml-6 {
-  margin-left: 10rem !important;
-}
-
-
-
+/* Alineación de elementos en pantallas pequeñas */
 @media only screen and (max-width: 991px) {
   .grid {
     display: block;

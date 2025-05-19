@@ -23,7 +23,7 @@ export class LoginPageComponent {
     const {email, password} = this.formLogin.value;
     this.authSvc.loginUsuario(email,password)
         .subscribe({
-          next: () => this.router.navigateByUrl('/es-Es/home'),
+          next: () => this.router.navigateByUrl('/cliente/panel-cliente'),
           error: (mensaje) => {
             // Swal.fire('Error',mensaje,'error');
             const Toast = Swal.mixin({

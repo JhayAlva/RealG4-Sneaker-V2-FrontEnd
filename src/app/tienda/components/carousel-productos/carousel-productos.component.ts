@@ -14,10 +14,6 @@ export class CarouselProductosComponent implements AfterViewInit, OnDestroy  {
   public productosList:IProducto[]=[];
   public destructionSus$?:Subscription;
 
-  // @ViewChild('carouselProducto', { static: false })
-  // public carousel!: ElementRef;
-  // public flkty?: Flickity;
-
   constructor(private tiendaSvc:TiendaService){}
 
   ngAfterViewInit(): void {
@@ -32,20 +28,9 @@ export class CarouselProductosComponent implements AfterViewInit, OnDestroy  {
     this.destructionSus$ = this.tiendaSvc.getProductosXNumeroVentas().subscribe(
       resp => {
         this.productosList = resp;
-        console.log('Productos recuperados: ', this.productosList);
+
       });
   }
 
-  // initFlickity() {
-  //   console.log('entro aqui');
-  //   return this.flkty = new Flickity(this.carousel!.nativeElement, {
-  //     cellAlign: 'left',
-  //     freeScroll: true,
-  //     wrapAround: true,
-  //     draggable:true,
-  //     prevNextButtons: false,
-  //     pageDots: false,
-  //   });
-  // }
 
 }

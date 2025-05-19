@@ -9,7 +9,7 @@ export const isNotAuthenticatedGuard: CanActivateFn = (route, state) => {
 
   //la del profesor
   if( authSvc.estadoUsuario() === AuthStatus.authenticated){
-    router.navigateByUrl('/panel-cliente');
+    router.navigateByUrl('/cliente/panel-cliente');
     return false;
   }
 

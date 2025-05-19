@@ -1,0 +1,14 @@
+<div class="container">
+  <ul class="dropdown-list" *ngFor="let variacionesNivel1 of this.variaciones">
+    <li *ngFor="let variacion of variacionesNivel1">
+      <div class="mini-tarjeta" (click)="SeleccionarVariacion(variacion.talla,variacion.precio)">
+          <a>{{ variacion.talla }}</a>
+          <br>
+          <span class="price">€{{ variacion.precio }}</span>
+      </div>
+    </li>
+  </ul>
+  <div>
+    <button class="boton-atras" (click)="Atras()">CANCELAR</button>
+  </div>
+</div>

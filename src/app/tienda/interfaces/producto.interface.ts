@@ -10,7 +10,7 @@ export interface IProducto{
   }>
   fechaLanzamiento:Date,
   categoria:String,
-  imagenes:Array<String>,
+  imagenes:Array<string>,
   paresVendidos:number,
   valoracionGeneral?:number,
   opiniones?:number,

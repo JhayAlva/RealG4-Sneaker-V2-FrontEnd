@@ -3,11 +3,17 @@ import { environment } from '../../../environments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import { AuthStatus } from '../interfaces/auth-response.enum';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { Observable, catchError, lastValueFrom, map, of, throwError } from 'rxjs';
 import { RegistroResponse } from '../interfaces/registro-response';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { CheckTokenResponse } from '../interfaces/check-token';
 import { UploadResponse } from '../../cliente/interfaces/upload-imagen-response';
+import { IProvincia } from '../interfaces/provincia.interface';
+import { IMunicipio } from '../interfaces/municipio.interface';
+import { IDireccion } from '../interfaces/direccion.interface';
+import { IPedido } from '../../tienda/interfaces/pedido.interface';
+import { IPdf } from '../../cliente/interfaces/imgPdf.interface';
+import { Feature, PlacesResponse } from '../interfaces/places';
 
 
 @Injectable({
@@ -25,9 +31,12 @@ export class AuthService {
   public currentUser = computed( () => this._currentUser() );
   public estadoUsuario = computed( () => this._estadoUsuario() );
 
+  public places:Feature[]=[];
+
   private setAuthentication(user:Usuario,token:string):boolean{
     this._currentUser.set(user);
     this._estadoUsuario.set(AuthStatus.authenticated);
+    console.log('estado del usuario', this.estadoUsuario());
     localStorage.setItem('token',token);
     return true;
   }
@@ -62,6 +71,38 @@ export class AuthService {
                );
   }
 
+  buscarDireccion(direccion: string){
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(direccion)}.json`;
+    const params = {
+      access_token: environment.apiKey,
+      language:'es',
+      limit: '5',
+      bbox: '-9.392883,36.000000,3.188988,43.747582'
+    };
+    return this.http.get<PlacesResponse>(url, { params })
+    .subscribe(resp=>{
+      this.places = resp.features
+      console.log('places : ', this.places);
+    })
+  }
+
+  deletePlaces(){
+    this.places=[];
+  }
+
+  operarDirecciones(direccion:IDireccion, operacion:string, usuarioId:string):Observable<boolean>{
+    const url = `${this.baseUrl}/auth/OperarDirecciones`;
+    const body = {direccion,operacion,usuarioId};
+
+    return this.http.post<LoginResponse>(url,body)
+                    .pipe(
+                      map(({user,token})=> this.setAuthentication(user,token)),
+                      catchError(err => throwError(()=> err.error.message))
+                    );
+
+
+  }
+
   uploadImagenUser(imagenBase64:string,email:string,id:string):Observable<boolean>{
     const url = `${this.baseUrl}/auth/uploadImagen`;
     const body ={imagenBase64,email,id}
@@ -73,6 +114,16 @@ export class AuthService {
                   catchError( err => throwError( ()=> err.error.message )
                 )
                );
+  }
+
+  getProvincias():Promise<Array<IProvincia>>{
+    const url=`${this.baseUrl}/auth/GetProvincias`;
+    return lastValueFrom(this.http.get<Array<IProvincia>>(url));
+  }
+
+  getMunicipios(codprov:number):Promise<Array<IMunicipio>>{
+    const url = `${this.baseUrl}/auth/GetMunicipio?codprov=${codprov}`;
+    return lastValueFrom(this.http.get<Array<IMunicipio>>(url));
   }
 
   checkAuthStatus():Observable<boolean>{
@@ -92,6 +143,18 @@ export class AuthService {
                         return of(false)
                       })
                     );
+  }
+
+  recuperarPedidosUsuario(idUsuario:string):Promise<Array<IPedido>>{
+    const url = `${this.baseUrl}/auth/GetPedidosUsuario?codusuario=${idUsuario}`;
+    return lastValueFrom(this.http.get<Array<IPedido>>(url));
+  }
+
+  getImgPdf(){
+    return this.http.get<any>('assets/configJson/pdfImagen.json')
+    .toPromise()
+    .then(res=><IPdf[]>res.imagenBase64)
+    .then(data=> {return data});
   }
 
   logout(){

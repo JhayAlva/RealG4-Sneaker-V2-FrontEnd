@@ -3,10 +3,20 @@
   border-radius: 2px;
 }
 
-.img-responsive {
-  max-width: 200%;
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: auto;
 }
+
+/* Imagen responsiva */
+.responsive-image {
+  max-width: 100%; /* Se ajusta al contenedor */
+  height: auto;    /* Mantiene la proporción */
+  object-fit: contain; /* Asegura que no se deforme */
+}
+
 
 .vertical-line {
   border-left: 2px solid #ccc; /* Color y grosor de la línea */
@@ -24,9 +34,23 @@
 }
 
 ::ng-deep .p-inputtext {
-  width: 300px;
+  width: 250px;
 }
 
 a{
   color: rgb(201, 198, 198);
+}
+
+/* Ajustes adicionales para pantallas pequeñas */
+@media (max-width: 767px) {
+  .responsive-image {
+    max-width: 80%; /* Reduce un poco el tamaño */
+  }
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 768px) {
+  .responsive-image {
+    max-width: 250px; /* Limita el tamaño máximo */
+  }
 }

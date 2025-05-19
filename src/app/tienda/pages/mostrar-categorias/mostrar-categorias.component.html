@@ -4,7 +4,7 @@
 
 <div class="product-list p-d-flex p-flex-wrap p-jc-center" *ngIf="!isLoadingProductos">
   <div class="product p-mb-3 p-shadow-2" *ngFor="let item of productosResultado.slice(page * 6,(page + 1 )*6)">
-      <div class="product-info p-relative p-d-flex p-flex-column p-ai-center">
+      <div class="product-info p-relative p-d-flex p-flex-column p-ai-center" style="cursor: pointer;" [routerLink]="['/es-Es/mostrar-producto',item._id]">
           <div class="image-container">
               <span class="favorite-icon">
                   <a class="pi pi-heart" style="font-size: 1rem; color: rgb(255, 0, 0)"></a>

@@ -1,0 +1,76 @@
+/* Contenedor principal */
+.search-results {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* Estilos para la lista */
+.list-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilos para cada elemento de la lista */
+.list-group-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e; /* Fondo más claro para contraste */
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #fbbf24; /* Borde rojo */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(255, 59, 59, 0.2); /* Sombras rojas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 59, 59, 0.3); /* Sombras más intensas al hover */
+  cursor: pointer;
+}
+
+/* Títulos */
+.place-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fbbf24; /* Texto rojo */
+  margin-bottom: 5px;
+}
+
+/* Dirección */
+.place-address {
+  font-size: 0.9rem;
+  color: #cccccc; /* Texto gris claro */
+  margin: 0;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .list-group-item {
+    padding: 12px;
+  }
+
+  .place-title {
+    font-size: 0.95rem;
+  }
+
+  .place-address {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-group-item {
+    padding: 10px;
+  }
+
+  .place-title {
+    font-size: 0.9rem;
+  }
+
+  .place-address {
+    font-size: 0.8rem;
+  }
+}

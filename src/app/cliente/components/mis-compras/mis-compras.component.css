@@ -1,0 +1,128 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #2c2c2c; /* Fondo oscuro */
+  color: #e0e0e0; /* Texto claro */
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background: #333; /* Fondo oscuro para el contenedor */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra más marcada */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff; /* Título en blanco */
+}
+
+.data-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pedido {
+  background: #444; /* Fondo oscuro para los pedidos */
+  border: 1px solid #555; /* Borde ligeramente más claro */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pedido-item {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+.producto-imagen {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  border: 2px solid #333; /* Borde sutil alrededor de las imágenes */
+}
+
+.pedido-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-nombre {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff; /* Nombre del producto en blanco */
+}
+
+.talla-y-estado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.talla {
+  font-weight: 600;
+  color: #bbb; /* Color suave para la talla */
+}
+
+.estado {
+  background-color: #666; /* Fondo gris oscuro para el estado */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff; /* Texto en blanco */
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f39c12; /* Amarillo dorado para el total */
+}
+
+.btn {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn[disabled] {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Puedes ajustar la altura dependiendo de tus necesidades */
+}
+
+
+@media (min-width: 768px) {
+  .pedido-item {
+      flex-direction: row;
+      align-items: center;
+  }
+
+  .producto-imagen {
+      margin-right: 20px;
+  }
+}

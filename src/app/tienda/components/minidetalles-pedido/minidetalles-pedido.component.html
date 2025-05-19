@@ -1,0 +1,80 @@
+<div class="container-detalles">
+  <div class="talla">
+    <div class="talla-info">
+        <p>Size: </p>
+        <p><strong>{{this.sizeSelected}}</strong></p>
+    </div>
+    <div class="botones-info">
+      <button class="botones-info" value="cambiarTalla" (click)="obtenerValueBoton($event)">EDITAR</button>
+    </div>
+  </div>
+  <br>
+  <div class="precio">
+      <p>Comprar ahora</p>
+      <div class="precio-info">
+        <p>€</p>
+        <p><strong>{{this.total}}</strong></p>
+      </div>
+      <br>
+      <p>Subtotal articulos</p>
+      <div class="precio-info">
+        <p>€</p>
+        <p class="card-text">{{this.subtotal}} </p>
+      </div>
+      <br>
+      <p>Gastos Envio</p>
+      <div class="precio-info">
+        <p>€</p>
+        <p>{{this.gastosEnvio}}</p>
+      </div>
+    </div>
+  <br>
+  <div class="metodoPago">
+    <div class="metodoPago-info">
+      <div *ngIf="this.datosPago; else sinPago">
+        <div *ngIf="this.metodoPago === 'tarjeta';else payPal">
+          <i class="pi pi-credit-card"></i>
+          {{ truncarNumeroTarjeta(datosPago.numeroTarjeta) }}
+        </div>
+        <ng-template #payPal>
+          <i class="pi pi-paypal"></i>
+          Paypal
+        </ng-template>
+      </div>
+      <ng-template #sinPago>
+        <i class="pi pi-credit-card"></i>
+        Por favor agregue un método de pago
+      </ng-template>
+    </div>
+    <div>
+      <button class="botones-info" value="pago" (click)="obtenerValueBoton($event)">EDITAR</button>
+    </div>
+  </div>
+  <div class="direccion">
+    <div class="direccion-info">
+      <div class="flex align-items-center" *ngFor="let direc of usuario()?.direcciones | filterPrincipal;let i = index">
+        <input
+        type="radio"
+        [value]="direc"
+        (click)="seleccionarDireccion(direc)"
+        name="direccionesGroup"
+        id="direc">
+        <label for="direc">{{ direc.calle }}</label>
+      </div>
+      <ng-template #esprinci>
+        <i class="pi pi-home"></i>
+        Por favor agregue una direccion
+      </ng-template>
+    </div>
+  </div>
+  <br>
+  <div style="text-align: center;">
+    <img src="../../../../assets/images/logo-no-background.png" width="50%">
+  </div>
+  <br>
+  <div class="botones">
+    <button class="boton-atras" (click)="Cancelar()">ATRAS</button>
+    <button class="boton-siguiente" (click)="FinalizarPedido()" >SIGUIENTE</button>
+  </div>
+
+</div>

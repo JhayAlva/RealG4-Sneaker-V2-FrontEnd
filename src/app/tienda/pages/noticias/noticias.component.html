@@ -1,0 +1,97 @@
+<div class="blog-front-page">
+  <div class="blog-front-page__content">
+    <section>
+      <div class="fp-module" style="margin-bottom: -85px; z-index:1000">
+        <div class="fp-module__awbi-container m-btm-51">
+          <div class="fp-module__awbi">
+            <div class="fp-module__awbi-triangles">
+              <img src="../../../../assets/images/triangles-abstract.png" alt="">
+            </div>
+            <div class="fp-module__awbi-text medium" style=" -webkit-text-stroke: 1px white;">
+              <p>Holiday</p>
+              <p>Holiday</p>
+              <p>Holiday</p>
+              <p>Holiday</p>
+            </div>
+            <div class="container">
+              <div class="fp-module__awbi-block featured_image_left">
+                <div class="fp-module__awbi-image">
+                  <div class="fp-module__awbi-image-placeholder">
+                    <img src="../../../../assets/images/yeezy700.png" class="img-bgk">
+                  </div>
+                </div>
+                <div class="fp-module__awbi-content">
+                  <div class="fp-module__awbi-content-text" style="color: #000000;">
+                    <h3 class="headline headline--1">Realg4 Holiday 2023</h3>
+                    <p class="article-excerpt">Aprovecha al máximo la temporada</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container-2">
+        <div class="custom-section">
+          <div class="custom-section__content">
+            <div class="custom-section__image">
+              <div class="custom-section__image-placeholder">
+                <img src="../../../../assets/images/noticias1.avif" alt="Descripción de la imagen">
+              </div>
+            </div>
+            <div class="custom-section__text" style="color: #000000;">
+              <h3><strong>RealG4 Vacaciones 2023</strong></h3>
+              <p class="section-excerpt">Comienza la temporada navideña con los regalos perfectos para ti y tus seres queridos. ¿Necesita ayuda sobre qué proteger? Hemos seleccionado una colección infalible de guías de regalos para mantenerte inspirado y hacer tus compras correctamente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container-3">
+        <div class="custom-section">
+          <div class="custom-section__content">
+            <div class="custom-section__text">
+              <h3><strong>Jordan 11s (Mejores lanzamientos navideños)</strong></h3>
+              <p style="font-size: 18px;"><strong>Cada temporada navideña, esperamos a ver qué ofrece el Jordan 11 Jumpman y rara vez decepciona. El retro Defining Moments de este año es una de las zapatillas de las que más se habla este año. Pero también hay otros AJ11 notables que se lanzaron en años anteriores. Consulte nuestra guía navideña para conocer los mejores Jordan 11 que se lanzarán.</strong></p>
+            </div>
+          </div>
+          <div style="text-align: center;border-radius: 8px;">
+            <img src="../../../../assets/images/noticia2.avif" alt="Descripción de la imagen" width="400px">
+          </div>
+          <br><br>
+          <div class="productos-section">
+            <h1 style="text-align: center;"><strong>Comprar Jordan 11</strong></h1>
+            <div class="pro">
+              <p-carousel [value]="productos" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+                <ng-template let-productos pTemplate="item">
+                  <br>
+                    <div class="card">
+                      <div class="product-item">
+                          <div class="product-item-content">
+                              <div (click)="MostrarDetallesProducto(productos._id)">
+                                <div class="product-image">
+                                  <img src="{{ productos.imagenes[0] }}" [alt]="productos.nombre" class="product-image" style="width: 100%; display: block;" />
+                                </div>
+                                <br><br>
+                                <div>
+                                  <h4 class="product-name" style="margin-left: 20px;">{{ productos.nombre }}</h4>
+                                  <h6 style="margin: 3px 0;color: grey;margin-left: 20px;">Ultima Venta</h6>
+                                  <h6 class="product-price" style="margin-left: 20px;">{{ '€' + productos.ultimaVenta }}</h6>
+                                </div>
+                              </div>
+                              <br>
+                          </div>
+                      </div>
+                    </div>
+                  </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
