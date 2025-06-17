@@ -3,13 +3,6 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { IPedido } from '../../../tienda/interfaces/pedido.interface';
 import { Router } from '@angular/router';
 
-import pdfMake from 'pdfmake/build/pdfMake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-
-import { IPdf } from '../../interfaces/imgPdf.interface';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 @Component({
   selector: 'app-mis-compras',
   templateUrl: './mis-compras.component.html',
@@ -21,7 +14,7 @@ export class MisComprasComponent {
   public pedidos: Array<IPedido> = [];
   public page: number = 0;
   public isLoading: boolean = true;
-  public imgPdf!: IPdf[];
+  // public imgPdf!: IPdf[];
   constructor(private authSvc: AuthService, private router: Router) {
     const usuario = this.usuarioLogeado();
     if (usuario?._id) {
@@ -31,9 +24,9 @@ export class MisComprasComponent {
       console.error("No se pudo recuperar el ID del usuario");
     }
 
-    this.authSvc.getImgPdf().then(img => {
-      this.imgPdf = img
-    });
+    // this.authSvc.getImgPdf().then(img => {
+    //   this.imgPdf = img
+    // });
   }
 
   async recuperarPedidos(usuario: any) {
@@ -69,56 +62,8 @@ export class MisComprasComponent {
   }
 
   descargarPdf(pedido:IPedido){
-    const styles = {
-      header: {
-        fontSize: 18,
-        bold: true,
-        margin: [0, 0, 0, 10], // Margen inferior de 10 unidades
-        alignment: 'center'
-      },
-      subheader: {
-        fontSize: 14,
-        bold: true,
-        margin: [0, 10, 0, 5] // Margen inferior de 5 unidades
-      },
-      detalles:{
-        fontSize: 14,
-        margin: [0, 10, 0, 5]
-      }
-    };
-    const imagen=this.imgPdf;
-    const FacturaPedido:any={
-      content: [
-        {
-          image: imagen,
-          width: 79,
-          alignment: 'center'
-        },
-        { text: '¡Gracias!', style: 'header'},
-        { text: 'Hola ' + this.usuarioLogeado()!.nombre + " " + this.usuarioLogeado()!.apellidos, alignment: 'center'},
-        { text: 'Nº de Factura: ' + pedido._id, style: 'header'},
-        { text: 'INFORMACIÓN DE TU PEDIDO:', style: 'subheader'},
-        { text: 'ID del pedido: ' + pedido._id , style: 'Detalles',alignment: 'justify'},
-        { text: 'Fecha del Pedido: ' + pedido.fechaPedido , style: 'Detalles',alignment: 'justify'},
-        { text: 'Facturado a: ' + this.usuarioLogeado()!.email , style: 'Detalles',alignment: 'justify'},
-        { text: 'Fuente: RealG4' , style: 'Detalles',alignment: 'justify'},
-        { text: 'Detalles de tu pedido:', style: 'subheader'},
-        {
-          table: {
-            headerRows:1,
-            body: [
-              ['','Producto', 'Cantidad', 'Precio'],
-              ...pedido.elementosPedido.map(item=>[{ image: item.productoItem.imagenes[0], width: 100},item.productoItem.nombre,item.cantidadItem,pedido.precioSeleccionado+"€"])
-            ]
-          }
-        },
-        { text: 'Total: ' + pedido.totalPedido+'€', style: 'subheader'},
-      ],
-      styles: styles // Referencia al objeto de estilos
-    };
-      const pdfGenerado = pdfMake.createPdf(FacturaPedido);
-      pdfGenerado.open();
-    }
+      console.log('Pedido a descargar: ', pedido);
+  }
 
   // descargarPdf(pedido: IPedido) {
   //   const doc = new jsPDF();
