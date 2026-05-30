@@ -21,7 +21,7 @@ export class MisComprasComponent {
       this.recuperarPedidos(usuario);
     } else {
       // Manejar el caso en el que el usuario no esté logeado o no tenga un ID válido
-      console.error("No se pudo recuperar el ID del usuario");
+
     }
 
     // this.authSvc.getImgPdf().then(img => {
@@ -35,9 +35,9 @@ export class MisComprasComponent {
     try {
       // Recuperamos los pedidos del servicio
       this.pedidos = await this.authSvc.recuperarPedidosUsuario(usuario._id);
-      console.log('Valor de pedidos....', this.pedidos);
+
     } catch (error) {
-      console.error('Error al recuperar pedidos:', error);
+
       // Opcional: manejar el error y tal vez mostrar un mensaje de error al usuario
     } finally {
       // Desactivamos el spinner una vez que los pedidos se han recuperado
@@ -62,7 +62,7 @@ export class MisComprasComponent {
   }
 
   descargarPdf(pedido:IPedido){
-      console.log('Pedido a descargar: ', pedido);
+
   }
 
   // descargarPdf(pedido: IPedido) {
@@ -157,7 +157,7 @@ export class MisComprasComponent {
   }
 
   comprarDeNuevo(idProducto: String) {
-    console.log('valor: ', idProducto);
+
     this.router.navigate(['/es-Es/mostrar-producto', idProducto]);
   }
 

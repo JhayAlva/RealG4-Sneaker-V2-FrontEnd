@@ -35,7 +35,7 @@ export class MisDatosComponent {
   constructor(private fb:FormBuilder,private authSvc:AuthService){}
 
   UpdateDatosCliente(){
-   console.log(this.formIniciopanel.value);
+
   }
 
 }

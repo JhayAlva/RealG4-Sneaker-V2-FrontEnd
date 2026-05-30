@@ -23,9 +23,9 @@ export class PedidoFinalizadoComponent {
 
   async ngOnInit() {
     this.pedidoId = this.activatedRoute.snapshot.paramMap.get('idPedido')!;
-    console.log('Valor del pedidoId: ', this.pedidoId);
+
     this.pedidoRealizado = await this.tiendaSvc.getPedidoCliente(this.pedidoId);
-    console.log('Pedido recuperado frontEnd: ', this.pedidoRealizado);
+
   }
 
   recuperarDatosUrl() {

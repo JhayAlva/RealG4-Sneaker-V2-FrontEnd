@@ -111,7 +111,7 @@ export class MinidetallesPedidoComponent implements OnInit {
                     })
 
     }else{
-      console.log('Hubo un error con el id del usuario');
+
     }
   }
 
@@ -131,7 +131,7 @@ export class MinidetallesPedidoComponent implements OnInit {
   }
 
   Cancelar(){
-    console.log('Valor del id producto: ',this.idProducto);
+
     this.router.navigate(['/es-Es/mostrar-producto/', this.idProducto]);
   }
 }

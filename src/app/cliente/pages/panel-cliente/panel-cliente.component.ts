@@ -42,12 +42,12 @@ export class PanelClienteComponent implements OnInit {
 
     _lector.addEventListener('load', ev => {
 
-      console.log(ev.target!.result);
+
       const usuario = this.usuario();
       if (usuario) {
         usuario.avatar = '';  // Si usuario es válido, establece la propiedad avatar
       }else{
-        console.error('El usuario es null o undefined.');
+
       }
       this.imgSrc = ev.target!.result as string;
       this.renderer2.removeAttribute(this.btnUploadImagen.nativeElement, 'disabled');
@@ -82,10 +82,10 @@ export class PanelClienteComponent implements OnInit {
 
         } else {
           // Manejo del caso en que usuario o usuario._id son indefinidos
-          console.error('El usuario o el ID del usuario no están definidos');
+
         }
     } catch (error) {
-        console.log('error en subida imagen...',error);
+
     }
 
   }

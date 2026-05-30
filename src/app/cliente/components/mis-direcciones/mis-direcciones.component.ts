@@ -20,8 +20,8 @@ export class MisDireccionesComponent {
   }
 
   async OperarDireccion(datos:[IDireccion,string]){
-    console.log('Operación sobre direcciones... ',datos);
-    console.log('valor del formModalDirec: ',this.formModalDirec);
+
+
 
     if(datos[1]=='modificar'){
       this.formModalDirec.direc=datos[0];
@@ -56,7 +56,7 @@ export class MisDireccionesComponent {
           }
         );
       } else {
-        console.error('Usuario no logeado o _id no disponible');
+
       }
     }
 

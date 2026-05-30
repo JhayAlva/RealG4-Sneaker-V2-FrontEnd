@@ -19,7 +19,7 @@ export class MostrarCategoriasComponent {
               this.acticatedRoute.paramMap.subscribe(
                 async(parametros:ParamMap)=>{
                   let _pathCategoria = parametros.get('path')!;
-                  console.log('La categoria de los productos...', _pathCategoria);
+
                   await this.tiendaSvc.getProductosByPath(_pathCategoria);
                 }
               );

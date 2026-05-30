@@ -64,7 +64,7 @@ export class TiendaService {
   }
 
   FinalizarPedido(newPedido:IPedido,datosPago:IDatosPago,metodoPago:string):Observable<FinalizarPedidoResp>{
-    console.log('Entro aqui', newPedido , datosPago, metodoPago);
+
     const url =`${this.baseUrl}/auth/FinalizarPedidoCliente`;
     const body = {newPedido,datosPago,metodoPago};
     return this.http.post<FinalizarPedidoResp>(url,body)

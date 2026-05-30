@@ -82,7 +82,7 @@ export class AuthService {
     return this.http.get<PlacesResponse>(url, { params })
     .subscribe(resp=>{
       this.places = resp.features
-      console.log('places : ', this.places);
+
     })
   }
 

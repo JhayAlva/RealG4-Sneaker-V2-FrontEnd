@@ -42,12 +42,12 @@ export class PedidoComponent implements OnInit {
         .subscribe(
           async(params:ParamMap)=>{
             let _idProducto = params.get('id')
-            console.log('...',_idProducto);
+
             if (_idProducto !== null) {
               this.idProducto = _idProducto;
-              console.log('... linea 40 de pedido: ',this.idProducto);
+
           } else {
-              console.log('Hubo un error');
+
           }
           }
         );
@@ -75,10 +75,10 @@ export class PedidoComponent implements OnInit {
       })
     ).subscribe(() => {
       // En este punto, variaciones contendrá un array de arrays de variaciones
-      console.log('del pedido********',this.variacionesA);
+
     });
 
-    console.log('itemssss*******',this.items$);
+
   }
 
 
@@ -93,12 +93,12 @@ export class PedidoComponent implements OnInit {
 
   CambiarModalEvent(valor:string):any{
     this.cambiarModal = valor.valueOf();
-    console.log('cambiando a..',this.cambiarModal);
+
   }
 
   MetodoPago(metodo:string){
     this.metodoDePago = metodo.valueOf();
-    console.log('Metodo seleccionado');
+
   }
 
   GetDatosPago(datos:IDatosPago){
@@ -106,19 +106,19 @@ export class PedidoComponent implements OnInit {
   }
 
   public async OperarDireccion(datos:[IDireccion,String]) {
-    console.log('vamos a hacer operacion sobre una direccion...', datos[0]);
+
 
     if (datos[1]=='modificar') {
         //abrir modal para modificar...pasandole datos direccion a modificar  OJO!!! CON EL ORDEN EN
         //Q PASAS LAS VARIABLES PUBLICAS DEL MODAL, 1º EL OBJETO DIRECCION Y DESPUES LA OPERACION, SINO TE SALDRA UNDEFINNED...
         // this.direccionModi=datos[0];
         this.operacion='modificar';
-        console.log('va bien');
+
         this.cambiarModal= "direccion";
 
     } else {
       //
-      console.log('no entra en el minicomponente');
+
     }
   }
 

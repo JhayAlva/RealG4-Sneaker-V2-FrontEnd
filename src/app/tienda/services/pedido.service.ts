@@ -51,7 +51,7 @@ export class PedidoService {
   }
 
   public añadirItemPedido(item:{productoItem:IProducto,cantidadItem:number},operacion:string):void{
-    console.log('estoy añadiendo un producto en servico pedidoservice...',item,operacion);
+
     let _posItem:number = this._items.findIndex((elem,pos,arr)=>elem.productoItem._id == item.productoItem._id);
 
     if(operacion == 'añadir'){
@@ -84,11 +84,11 @@ export class PedidoService {
     let _gastosenvio:number=0;
 
     let direccionEnvio = direccionSelected || _dirEnvio
-    console.log('direcEnvio******',direccionEnvio);
+
     if (direccionEnvio === undefined) {
       // Manejar el caso en que _dirEnvio es undefined
       // Por ejemplo, puedes asignar un valor por defecto o lanzar un error.
-      console.log('Hubo un error al intentar seleccionar las direcciones');
+
     } else {
       // _dirEnvio es seguro de usar como IDireccion aquí.
       if(_subtotal>100){
@@ -108,7 +108,7 @@ export class PedidoService {
             break;
         }
       }
-      console.log('los gastos de envio*******', _gastosenvio);
+
     }
     return _gastosenvio;
   }

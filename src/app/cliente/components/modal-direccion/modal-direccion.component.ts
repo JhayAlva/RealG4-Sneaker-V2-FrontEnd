@@ -53,7 +53,7 @@ export class ModalDireccionComponent implements OnInit {
   public addEditDirecEvent: EventEmitter<Usuario>= new EventEmitter<Usuario>();
 
   constructor(private fb:FormBuilder,private authSvc:AuthService){
-    console.log('El valor de operar: ',this.operacion);
+
   }
 
   async ngOnInit() {
@@ -62,7 +62,7 @@ export class ModalDireccionComponent implements OnInit {
 
   PrecargaValores(){
     //este metodo solo se ejecuta si el valor de la prop.'operacion' vale 'modificar'
-    console.log('precaragando valores con...', this.direc);
+
 
     this.formdireccion.controls['calle'].setValue(this.direc?.calle);
     this.formdireccion.controls['cp'].setValue(this.direc?.cp);
@@ -150,14 +150,14 @@ export class ModalDireccionComponent implements OnInit {
         }
       );
     }else{
-      console.error('Usuario no logeado o _id no disponible');
+
     }
 
 
   }
 
   async RecuperaMunicipios(ev:any){
-    console.log('provincia seleccionada...',ev.target);
+
     this.listaMunicipios=await this.authSvc.getMunicipios(ev.target.value.split('-')[0])
   }
 
