@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
-    "build": "ng build",
+    "build": "node set-env.js && ng build",
+    "start": "node set-env.js && ng serve -o",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@types/mapbox-gl": "^3.4.1",
+    "dotenv": "^17.4.2",
     "flickity": "^3.0.0",
     "mapbox-gl": "^3.3.0",
     "primeflex": "^3.3.1",
