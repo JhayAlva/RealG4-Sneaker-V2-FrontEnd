@@ -1,61 +1,88 @@
-.container {
-  border: 1px solid white;
-  border-radius: 2px;
-  padding: 1rem;
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
 }
+
+
+.container {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 6px;
+  padding: 1rem;
+  max-width: 980px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(0,0,0,0.35);
+  box-sizing: border-box;
+}
+
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.25rem;
+}
+
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.vertical-hr {
+  display: none;
+  width: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 1.25rem;
+  align-self: center;
+  border: none;
+  box-shadow: none;
   height: auto;
 }
 
-/* Imagen responsiva */
-.responsive-image {
-  max-width: 100%; /* Se ajusta al contenedor */
-  height: auto;    /* Mantiene la proporción */
-  object-fit: contain; /* Asegura que no se deforme */
-}
-
-.vertical-line {
-  border-left: 2px solid #ccc;
-  height: 100%;
-  margin: auto;
-}
-
-.hidden-sm {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .hidden-sm {
-    display: block;
-  }
-  .container {
-    flex-wrap: nowrap;
-  }
-}
 
 ::ng-deep .p-inputtext {
   width: 100%;
   max-width: 250px;
 }
 
+
+.card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Enlaces */
 a {
   color: rgb(201, 198, 198);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
 
-/* Espaciado y alineación en pantallas pequeñas */
+
 @media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
   h1 {
     text-align: center;
     font-size: 1.5rem;
+    margin-top: 0.25rem;
   }
 
   .card {
@@ -63,26 +90,29 @@ a:hover {
     justify-content: center;
   }
 
-  .vertical-line {
+  .vertical-hr {
     display: none;
   }
 
-  .img-responsive {
-    max-width: 80%;
+  .responsive-image {
+    max-width: 60%;
     margin: 0 auto;
   }
 }
 
-/* Ajustes adicionales para pantallas pequeñas */
-@media (max-width: 767px) {
+
+@media (min-width: 768px) {
+  .container {
+    flex-wrap: nowrap;
+  }
+
+  .vertical-hr {
+    display: block;
+    height: 220px;
+  }
+
   .responsive-image {
-    max-width: 80%; /* Reduce un poco el tamaño */
+    max-width: 250px;
   }
 }
 
-/* Ajustes para pantallas grandes */
-@media (min-width: 768px) {
-  .responsive-image {
-    max-width: 250px; /* Limita el tamaño máximo */
-  }
-}

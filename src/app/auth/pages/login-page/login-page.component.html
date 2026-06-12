@@ -2,7 +2,9 @@
   <div class="col-12 md:col-5 mt-4 text-center image-container" routerLink="/es-Es/home" style="cursor: pointer;">
     <img src="../../../../assets/images/logo-realg.png" alt="Logo" class="responsive-image" />
   </div>
-  <hr class="vertical-hr hidden-sm">
+
+  <div class="vertical-hr hidden-sm" aria-hidden="true"></div>
+
   <div class="col-12 md:col-6 mr-4">
     <h1>Login</h1>
     <form [formGroup]="formLogin" (ngSubmit)="login()">
@@ -27,5 +29,3 @@
     </form>
   </div>
 </div>
-
-
