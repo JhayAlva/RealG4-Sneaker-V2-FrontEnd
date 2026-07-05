@@ -1,0 +1,27 @@
+﻿:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.auth-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  width: 100%;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.auth-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .auth-shell {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+}
