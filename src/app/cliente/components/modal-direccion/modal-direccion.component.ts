@@ -83,8 +83,15 @@ export class ModalDireccionComponent implements OnInit {
 
   OnQueryChange(query:string){
     if(this.debounceTimer) clearTimeout(this.debounceTimer);
+
+    const terminoBusqueda = query.trim();
+    if (terminoBusqueda.length < 2) {
+      this.authSvc.deletePlaces();
+      return;
+    }
+
     this.debounceTimer = setTimeout(()=>{
-      this.authSvc.buscarDireccion(query);
+      this.authSvc.buscarDireccion(terminoBusqueda);
     },350)
   }
 

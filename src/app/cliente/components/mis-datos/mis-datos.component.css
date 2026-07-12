@@ -1,108 +1,206 @@
-/* Estilos generales */
+:host {
+  display: block;
+  width: 100%;
+  color: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 h2 {
-  margin-bottom: 20px;
+  margin: 0 0 14px;
+  color: #fff;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 hr {
-  border: 1px solid #444;
+  height: 1px;
+  margin: 0 0 28px;
+  border: 0;
+  background: #444;
 }
 
-/* Contenedor del formulario */
-.form-container {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.profile-form-shell,
+.profile-form-card,
+form {
+  width: 100%;
 }
 
-/* Fila del formulario */
+.profile-form-card {
+  padding: 0;
+  background: transparent;
+}
+
 .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 18px;
 }
 
-/* Grupo de formulario */
+.form-row-birth {
+  grid-template-columns: minmax(280px, 1.35fr) repeat(3, minmax(150px, .75fr));
+}
+
 .form-group {
-  flex: 1;
-  min-width: 250px;
-  margin-right: 20px;
+  min-width: 0;
 }
 
-/* Para la última columna, eliminar el margen derecho */
-.form-group:last-child {
-  margin-right: 0;
+.full-width {
+  grid-column: 1 / -1;
 }
 
-/* Campos del formulario */
 label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 7px;
+  color: #f1f1f1;
+  font-size: .9rem;
+  font-weight: 800;
 }
 
 input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #555;
-  border-radius: 5px;
-  background-color: #444;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #4a4a4a;
+  border-radius: 7px;
+  background: #444;
   color: #fff;
-  box-sizing: border-box;
+  font: inherit;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+input:hover {
+  border-color: #5a5a5a;
+  background: #494949;
+}
+
+input:focus {
+  border-color: #d71920;
+  box-shadow: 0 0 0 2px rgba(215, 25, 32, .2);
+  outline: none;
 }
 
 input:disabled {
-  background-color: #000000; /* Color de fondo más claro */
-  color: #a0a0a0; /* Color del texto más claro */
-  cursor: not-allowed; /* Cambia el cursor para mostrar que no se puede interactuar */
-  border: 1px solid #979797; /* Borde más suave */
+  border-color: #777;
+  background: #050505;
+  color: #a8a8a8;
+  cursor: not-allowed;
 }
 
-
-
-/* Campo de contraseña a ancho completo */
-.full-width {
-  flex: 0 0 100%;
-  margin-right: 0;
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #4a4a4a;
+  border-radius: 7px;
+  background: #050505;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
 }
 
-/* Botón de envío */
-.submit-btn {
-  display: inline-block;
-  padding: 8px 20px; /* Tamaño más pequeño */
-  background-color: #ff0000;
+:host ::ng-deep .p-dropdown:not(.p-disabled):hover {
+  border-color: #5a5a5a;
+  background: #111;
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: #d71920;
+  box-shadow: 0 0 0 2px rgba(215, 25, 32, .2);
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-label {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 9px 12px;
+  color: #d7d7d7;
+}
+
+:host ::ng-deep .p-dropdown .p-placeholder {
+  color: #9a9a9a;
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-trigger {
+  width: 42px;
+  color: #bdbdbd;
+}
+
+:host ::ng-deep .p-dropdown-panel {
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #1e1e1e;
   color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: auto; /* Alinea a la izquierda */
 }
 
-.submit-btn:hover {
-  background-color: #000000;
-  color: white;
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  color: #e6e6e6;
 }
 
-/* Responsividad */
-@media (max-width: 600px) {
-  .form-row {
-      flex-direction: column;
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover,
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background: #d71920;
+  color: #fff;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+:host ::ng-deep .submit-btn.p-button,
+.submit-btn {
+  min-height: 42px;
+  padding: 10px 22px;
+  border: 1px solid #d71920;
+  border-radius: 9px;
+  background: #d71920;
+  color: #fff;
+  font-weight: 800;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, opacity .18s ease;
+}
+
+:host ::ng-deep .submit-btn.p-button:not(:disabled):hover,
+.submit-btn:not(:disabled):hover {
+  border-color: #ff241f;
+  background: #ff241f;
+  transform: translateY(-1px);
+}
+
+:host ::ng-deep .submit-btn.p-button:disabled,
+.submit-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .form-row,
+  .form-row-birth {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  h2 {
+    font-size: 1.25rem;
   }
 
-  .form-group {
-      margin-right: 0;
-      margin-bottom: 20px;
+  hr {
+    margin-bottom: 20px;
   }
 
-  .form-group.full-width {
-      margin-bottom: 0;
+  .form-row,
+  .form-row-birth {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
   }
 
+  .form-actions,
+  :host ::ng-deep .submit-btn.p-button,
   .submit-btn {
-      width: 100%;
-      margin: 0;
+    width: 100%;
   }
 }

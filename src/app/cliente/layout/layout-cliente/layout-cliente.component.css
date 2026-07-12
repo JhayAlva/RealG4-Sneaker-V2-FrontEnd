@@ -1,6 +1,20 @@
-/* layoutCliente.component.css */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0c0c0c;
+}
 
-/* Estilos para el nav-bar */
+.navbar,
+footer {
+  flex: 0 0 auto;
+}
+
+main {
+  flex: 1 0 auto;
+  background-color: #0c0c0c;
+}
+
 .navbar {
   background-color: #1e1e1e; /* Color de fondo del nav-bar */
   padding: 10px 0; /* Espacio arriba y abajo */
@@ -19,18 +33,18 @@
   cursor: pointer;
 }
 
-/* Estilos para el footer */
 footer {
   background-color: #1e1e1e; /* Color de fondo del footer */
   color: #fff; /* Color del texto */
   padding: 20px 0; /* Espacio arriba y abajo */
   text-align: center; /* Centra el texto */
-  position: relative;
-  bottom: 0;
   width: 100%;
 }
 
-/* Estilos responsivos */
+.footer-content p {
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .logo {
     height: 40px; /* Ajusta la altura del logo para pantallas más pequeñas */

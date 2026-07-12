@@ -36,11 +36,49 @@ export class PanelClienteComponent implements OnInit {
     });
   }
 
+  private prepararAvatar(dataUrl: string): Promise<string> {
+    return new Promise((resolve) => {
+      const image = new Image();
+
+      image.addEventListener('load', () => {
+        const size = 600;
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        if (!context) {
+          resolve(dataUrl);
+          return;
+        }
+
+        canvas.width = size;
+        canvas.height = size;
+        context.fillStyle = '#2b2b2b';
+        context.fillRect(0, 0, size, size);
+
+        const scale = Math.min(size / image.width, size / image.height);
+        const width = image.width * scale;
+        const height = image.height * scale;
+        const x = (size - width) / 2;
+        const y = (size - height) / 2;
+
+        context.drawImage(image, x, y, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.92));
+      });
+
+      image.addEventListener('error', () => resolve(dataUrl));
+      image.src = dataUrl;
+    });
+  }
+
   public PrevisualizarImagen(inputimagen: any) {
+    if (!inputimagen.files?.length) {
+      return;
+    }
+
     this._fichImagen = inputimagen.files[0] as File;
     let _lector: FileReader = new FileReader();
 
-    _lector.addEventListener('load', ev => {
+    _lector.addEventListener('load', async ev => {
 
 
       const usuario = this.usuario();
@@ -49,7 +87,7 @@ export class PanelClienteComponent implements OnInit {
       }else{
 
       }
-      this.imgSrc = ev.target!.result as string;
+      this.imgSrc = await this.prepararAvatar(ev.target!.result as string);
       this.renderer2.removeAttribute(this.btnUploadImagen.nativeElement, 'disabled');
 
     });

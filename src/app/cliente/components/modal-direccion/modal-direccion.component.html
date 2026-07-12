@@ -1,80 +1,85 @@
 <div class="container">
   <form [formGroup]="formdireccion" class="p-fluid" id="formDirecciones" (ngSubmit)="OperarDireccion()">
-    <!-- datos de la persona a quien llega envio -->
-    <h5><strong>Datos personales:</strong></h5>
-    <div class="form-datos">
-    <div class="formgrid grid">
-      <div class="p-field col-6">
-        <label for="inputNombre" class="form-label">Nombre:</label>
-        <input type="text" pInputText class="form-control" id="inputNombre" placeholder="Nombre *" formControlName="nombre">
-      </div>
-      <div class="p-field col-6">
-        <label for="inputApellidos" class="form-label">Apellidos:</label>
-        <input type="text" pInputText class="form-control" id="inputApellidos" placeholder="Apellidos *" formControlName="apellidos">
-      </div>
-
-      <div class="p-field col-6">
-        <label for="inputNIF" class="form-label">NIF/CIF:</label>
-        <input type="text" pInputText class="form-control" id="inputNIF" placeholder="NIF/CIF/NIE *" formControlName="nif">
-      </div>
-      <div class="p-field col-6">
-        <label for="inputTlfno" class="form-label">Numero de Tlfno:</label>
-        <input type="text" pInputText class="form-control" id="inputTlfno" placeholder="Numero de Tlfno *" formControlName="telefono">
-      </div>
-      <div class="p-field col-6">
-      </div>
-    </div>
-        <!-- datos de la direccion de envio -->
-      <h5><strong>Direccion de envio:</strong></h5>
+    <section class="form-section">
+      <h5>Datos personales</h5>
       <div class="formgrid grid">
-      <div class="p-field col-12">
-        <label for="inputCalle" class="form-label">Calle:</label>
-        <input type="text" pInputText #txtQuery (keyup)="OnQueryChange(txtQuery.value)"
-        class="form-control" id="inputCalle" placeholder="Mi Direccion (ej: Calle Mayor, 1) *" formControlName="calle">
-        <app-result-bar (obtenerDireccionCompleta)="infoDireccion($event)"/>
-      </div>
+        <div class="p-field col-12 md:col-6">
+          <label for="inputNombre" class="form-label">Nombre</label>
+          <input type="text" pInputText class="form-control" id="inputNombre" placeholder="Nombre *" formControlName="nombre">
+        </div>
 
-      <div class="p-field col-6">
-        <label for="inputCP" class="form-label">Codigo Postal:</label>
-        <input type="text" pInputText class="form-control" id="inputCP" placeholder="Codigo Postal: 28803" formControlName="cp">
-      </div>
-      <div class="p-field col-6">
-        <label for="inputPais" class="form-label">Pais:</label>
-        <input type="text" pInputText class="form-control" id="inputPais" placeholder="España" formControlName="pais">
-      </div>
-      <div class="p-field col-6">
-        <label for="inputProvincia" class="form-label">Provincia</label>
-          <select id="inputProvincia" style="appearance: auto" formControlName="provincia" (change)="this.RecuperaMunicipios($event)" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary">
-            <option value="0" selected disabled> - Seleccionar Provincia - </option>
-            <option *ngFor="let item of this.listaProvincias" value="{{item.CPRO}}-{{item.PRO}}">{{item.PRO}}</option>
-          </select>
-      </div>
-      <div class="p-field col-6">
-        <label for="inputMunicipio" class="form-label">Municipio</label>
-        <select id="inputMunicipio" formControlName="municipio" class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary">
-            <option value="0" selected disabled> - Selecciona un Municipio -</option>
-            <option *ngFor="let item of this.listaMunicipios" value="{{item.CMUM}}-{{item.DMUN50}}">{{item.DMUN50}}</option>
-        </select>
-      </div>
-      <br>
-      <div class="p-field col-6">
-        <label for="RadioEsPrincipal" class="form-label">Es principal:</label>
-        <div class="flex align-items-center gap-1">
-            <div class="flex align-items-center">
-              <p-radioButton name="esprincipal" value="true" formControlName="esprincipal" inputId="opcionSi"></p-radioButton>
-              <label for="opcionSi" class="ml-2">Sí</label>
-            </div>
-            <div class="flex align-items-center">
-              <p-radioButton name="esprincipal" value="false" formControlName="esprincipal" inputId="opcionNo"></p-radioButton>
-              <label for="opcionNo" class="ml-2">No</label>
-            </div>
+        <div class="p-field col-12 md:col-6">
+          <label for="inputApellidos" class="form-label">Apellidos</label>
+          <input type="text" pInputText class="form-control" id="inputApellidos" placeholder="Apellidos *" formControlName="apellidos">
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputNIF" class="form-label">NIF/CIF</label>
+          <input type="text" pInputText class="form-control" id="inputNIF" placeholder="NIF/CIF/NIE *" formControlName="nif">
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputTlfno" class="form-label">Numero de telefono</label>
+          <input type="text" pInputText class="form-control" id="inputTlfno" placeholder="Numero de telefono *" formControlName="telefono">
         </div>
       </div>
+    </section>
+
+    <section class="form-section">
+      <h5>Direccion de envio</h5>
+      <div class="formgrid grid">
+        <div class="p-field col-12">
+          <label for="inputCalle" class="form-label">Calle</label>
+          <input type="text" pInputText #txtQuery (keyup)="OnQueryChange(txtQuery.value)"
+          class="form-control" id="inputCalle" placeholder="Mi direccion (ej: Calle Mayor, 1) *" formControlName="calle">
+          <app-result-bar (obtenerDireccionCompleta)="infoDireccion($event)"/>
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputCP" class="form-label">Codigo postal</label>
+          <input type="text" pInputText class="form-control" id="inputCP" placeholder="Codigo postal: 28803" formControlName="cp">
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputPais" class="form-label">Pais</label>
+          <input type="text" pInputText class="form-control" id="inputPais" placeholder="Espa&ntilde;a" formControlName="pais">
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputProvincia" class="form-label">Provincia</label>
+          <select id="inputProvincia" formControlName="provincia" (change)="this.RecuperaMunicipios($event)">
+            <option value="0" selected disabled>Seleccionar provincia</option>
+            <option *ngFor="let item of this.listaProvincias" value="{{item.CPRO}}-{{item.PRO}}">{{item.PRO}}</option>
+          </select>
+        </div>
+
+        <div class="p-field col-12 md:col-6">
+          <label for="inputMunicipio" class="form-label">Municipio</label>
+          <select id="inputMunicipio" formControlName="municipio">
+            <option value="0" selected disabled>Selecciona un municipio</option>
+            <option *ngFor="let item of this.listaMunicipios" value="{{item.CMUM}}-{{item.DMUN50}}">{{item.DMUN50}}</option>
+          </select>
+        </div>
+
+        <div class="p-field col-12">
+          <label for="RadioEsPrincipal" class="form-label">Es principal</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <p-radioButton name="esprincipal" value="true" formControlName="esprincipal" inputId="opcionSi"></p-radioButton>
+              <label for="opcionSi">Si</label>
+            </div>
+            <div class="radio-option">
+              <p-radioButton name="esprincipal" value="false" formControlName="esprincipal" inputId="opcionNo"></p-radioButton>
+              <label for="opcionNo">No</label>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="botones">
-        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal" (click)="this.HideModal()">Cancelar</button>
-        <button type="submit" class="btn-orange" id="btnCrearDireccion">Guardar</button>
-      </div>
+    </section>
+
+    <div class="botones">
+      <button type="button" class="btn btn-cancel" data-bs-dismiss="modal" (click)="this.HideModal()">Cancelar</button>
+      <button type="submit" class="btn-orange" id="btnCrearDireccion">Guardar</button>
     </div>
   </form>
 </div>

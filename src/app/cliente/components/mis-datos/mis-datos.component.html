@@ -1,60 +1,63 @@
 <h2>Perfil</h2>
 <hr>
-<br><br>
-<div class="p-d-flex p-jc-center p-mt-5">
-  <!-- Contenedor del formulario -->
-  <div class="p-grid p-col-12 p-md-10 p-lg-8 p-shadow-3 p-p-4">
+
+<div class="profile-form-shell">
+  <div class="profile-form-card">
     <form [formGroup]="formIniciopanel" (ngSubmit)="UpdateDatosCliente()">
-      <!-- Fila 1: Nombre y Apellidos -->
       <div class="form-row">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input id="nombre" type="text" pInputText name="nombre" formControlName="nombre" />
         </div>
+
         <div class="form-group">
           <label for="apellidos">Apellidos</label>
           <input id="apellidos" type="text" pInputText name="apellidos" formControlName="apellidos" />
         </div>
       </div>
-      <!-- Fila 2: Teléfono y Email -->
+
       <div class="form-row">
         <div class="form-group">
-          <label for="password">Contraseña</label>
+          <label for="password">Contrase&ntilde;a</label>
           <input id="password" type="password" pInputText formControlName="password" />
         </div>
+
         <div class="form-group">
-          <label for="newpassword">Nueva contraseña</label>
-          <input id="password" type="password" pInputText name="newpassword" formControlName="newpassword"/>
+          <label for="newpassword">Nueva contrase&ntilde;a</label>
+          <input id="newpassword" type="password" pInputText name="newpassword" formControlName="newpassword"/>
         </div>
       </div>
-      <!-- Fila 3: Fecha de Nacimiento -->
-      <div class="form-row">
+
+      <div class="form-row form-row-birth">
         <div class="form-group">
           <label for="email">Email</label>
           <input id="email" type="email" pInputText name="email" formControlName="email"/>
         </div>
+
         <div class="form-group">
-          <label for="dia">Día</label>
-          <p-dropdown [options]="dias" placeholder="Selecciona el día" formControlName="dia"></p-dropdown>
+          <label for="dia">D&iacute;a</label>
+          <p-dropdown [options]="dias" placeholder="Selecciona el d&iacute;a" formControlName="dia"></p-dropdown>
         </div>
+
         <div class="form-group">
           <label for="mes">Mes</label>
           <p-dropdown [options]="meses" placeholder="Selecciona el mes" formControlName="mes"></p-dropdown>
         </div>
+
         <div class="form-group">
-          <label for="anio">Año</label>
-          <p-dropdown [options]="anios" placeholder="Selecciona el año" formControlName="anio"></p-dropdown>
+          <label for="anio">A&ntilde;o</label>
+          <p-dropdown [options]="anios" placeholder="Selecciona el a&ntilde;o" formControlName="anio"></p-dropdown>
         </div>
       </div>
-      <!-- Fila 4: Contraseña -->
+
       <div class="form-row">
         <div class="form-group full-width">
-          <label for="telefono">Teléfono</label>
+          <label for="telefono">Tel&eacute;fono</label>
           <input id="telefono" type="text" pInputText name="telefono" formControlName="telefono" />
         </div>
       </div>
-      <!-- Botón Enviar en la esquina inferior derecha -->
-      <div  class="form-row">
+
+      <div class="form-actions">
         <button pButton type="submit" label="Enviar" class="submit-btn" [disabled]="!this.formIniciopanel.valid"></button>
       </div>
     </form>

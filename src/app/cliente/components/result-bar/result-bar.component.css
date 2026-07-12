@@ -1,76 +1,87 @@
-/* Contenedor principal */
+:host {
+  display: block;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .search-results {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 10px;
+  width: 100%;
+  margin-top: 8px;
 }
 
-/* Estilos para la lista */
 .list-group {
+  display: grid;
+  gap: 6px;
+  max-height: 260px;
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
   list-style: none;
-  padding: 0;
-  margin: 0;
+  border: 1px solid #333;
+  border-radius: 9px;
+  background: #151515;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .32);
 }
 
-/* Estilos para cada elemento de la lista */
+.list-group::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list-group::-webkit-scrollbar-track {
+  background: #151515;
+}
+
+.list-group::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #444;
+}
+
 .list-group-item {
-  display: flex;
-  flex-direction: column;
-  background-color: #1e1e1e; /* Fondo más claro para contraste */
-  margin-bottom: 10px;
-  padding: 15px;
-  border: 1px solid #fbbf24; /* Borde rojo */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(255, 59, 59, 0.2); /* Sombras rojas */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.list-group-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(255, 59, 59, 0.3); /* Sombras más intensas al hover */
+  display: grid;
+  gap: 3px;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: #202020;
   cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
 }
 
-/* Títulos */
+.list-group-item:hover,
+.list-group-item:focus-within {
+  border-color: rgba(215, 25, 32, .75);
+  background: #282828;
+  transform: translateX(2px);
+}
+
 .place-title {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #fbbf24; /* Texto rojo */
-  margin-bottom: 5px;
-}
-
-/* Dirección */
-.place-address {
-  font-size: 0.9rem;
-  color: #cccccc; /* Texto gris claro */
   margin: 0;
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
-/* Responsividad */
-@media (max-width: 768px) {
-  .list-group-item {
-    padding: 12px;
-  }
-
-  .place-title {
-    font-size: 0.95rem;
-  }
-
-  .place-address {
-    font-size: 0.85rem;
-  }
+.place-address {
+  margin: 0;
+  color: #bdbdbd;
+  font-size: .85rem;
+  line-height: 1.35;
 }
 
-@media (max-width: 480px) {
+.list-group-item:hover .place-title {
+  color: #ff4b4b;
+}
+
+@media (max-width: 620px) {
+  .list-group {
+    max-height: 220px;
+  }
+
   .list-group-item {
     padding: 10px;
-  }
-
-  .place-title {
-    font-size: 0.9rem;
-  }
-
-  .place-address {
-    font-size: 0.8rem;
   }
 }

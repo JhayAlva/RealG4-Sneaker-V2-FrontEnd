@@ -1,5 +1,5 @@
-<div class="search-results">
-  <ul class="list-group" *ngIf="places.length > 0">
+<div class="search-results" *ngIf="places.length > 0">
+  <ul class="list-group">
     <li *ngFor="let place of places"
       class="list-group-item" (click)="obtenerInfoDirec(place)">
       <h6 class="place-title">{{ place.text }}</h6>

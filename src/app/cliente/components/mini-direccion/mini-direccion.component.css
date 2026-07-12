@@ -1,107 +1,118 @@
-/* Contenedor principal */
-.container-card {
-  display: flex; /* Alinea la tarjeta y el speed dial en una fila */
-  justify-content: space-between; /* Deja espacio entre los elementos */
-  background: #1e1e1e;
-  color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
+:host {
+  display: block;
   width: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 34%) minmax(0, 1fr) auto;
+  gap: 20px;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #242424;
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .2);
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
 
 .container-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+  border-color: #444;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, .28);
+  transform: translateY(-2px);
 }
 
 .mini-map {
-  flex: 1 1 40%;
-  height: 150px;
+  min-height: 150px;
+  overflow: hidden;
+  border: 1px solid #333;
   border-radius: 10px;
-  margin-right: 20px;
+  background: #111;
 }
 
 .body-card {
-  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  min-width: 0;
 }
 
 .body-card h2 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 10px;
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .body-card p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #ddd;
+  margin: 3px 0;
+  color: #d4d4d4;
+  font-size: .98rem;
+  line-height: 1.45;
 }
 
-/* Contenedor del Speed Dial */
 .container-button {
-  display: flex; /* Asegura que el speed dial esté alineado con el contenido */
-  align-items: flex-start; /* Alinea el botón con la parte superior de la tarjeta */
-  margin-top: 20px;
-}
-
-::ng-deep .p-speeddial {
-  position: static; /* Evita que se superponga en la tarjeta */
   display: flex;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-width: 44px;
 }
 
-::ng-deep .p-speeddial .p-speeddial-button {
-  background: #fd0101;
-  color: black;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+:host ::ng-deep .p-speeddial {
+  position: static;
 }
 
-::ng-deep .p-speeddial .p-speeddial-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+:host ::ng-deep .p-speeddial .p-speeddial-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d71920;
+  background: #d71920;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(215, 25, 32, .18);
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
+:host ::ng-deep .p-speeddial .p-speeddial-button:hover {
+  border-color: #ff241f;
+  background: #ff241f;
+  transform: translateY(-1px);
+}
+
+:host ::ng-deep .p-speeddial-action {
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+:host ::ng-deep .p-speeddial-action:hover {
+  background: #d71920;
+  border-color: #d71920;
+}
+
+@media (max-width: 820px) {
   .container-card {
-    flex-direction: column;
-    padding: 15px;
+    grid-template-columns: 1fr auto;
   }
 
   .mini-map {
-    width: 100%;
-    margin: 0 0 15px 0;
-  }
-
-  .body-card {
-    width: 100%;
-  }
-
-  .container-button {
-    margin-top: 15px;
-    justify-content: center;
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   .container-card {
-    padding: 10px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 14px;
   }
 
-  .body-card h2 {
-    font-size: 1.2rem;
-  }
-
-  .body-card p {
-    font-size: 0.9rem;
+  .container-button {
+    justify-content: flex-start;
   }
 }

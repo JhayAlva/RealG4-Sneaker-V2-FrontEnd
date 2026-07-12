@@ -1,28 +1,33 @@
 <div class="container">
-  <h2>Direcciones</h2>
-  <hr>
-  <br>
-  <button (click)="mostrarModalDireccion = true" class="d-1">+ Añadir Direccion</button>
-  <p-dialog #miDialogo [header]="formModalDirec.operacion" [(visible)]="mostrarModalDireccion" [modal]="true" [responsive]="true">
+  <div class="section-header">
+    <div>
+      <h2>Direcciones</h2>
+      <p>Gestiona tus direcciones de env&iacute;o y selecciona d&oacute;nde quieres recibir tus pedidos.</p>
+    </div>
+    <button (click)="mostrarModalDireccion = true" class="d-1">+ A&ntilde;adir direccion</button>
+  </div>
+
+  <p-dialog #miDialogo styleClass="address-dialog" [header]="formModalDirec.operacion" [(visible)]="mostrarModalDireccion" [modal]="true" [responsive]="true">
     <app-modal-direccion #formModalDirec
     (addEditDirecEvent)="RefrescaDatos($event)"
     (cerrarModalEvent)="HideModal()"></app-modal-direccion>
   </p-dialog>
-  <br><br>
-  <h2>Mis direcciones</h2>
-  <div class="row" *ngIf="this.usuarioLogeado()?.direcciones?.length !== 0; else nodirs ">
-    <div *ngFor="let direc of this.usuarioLogeado()?.direcciones.slice(page * 2, (page + 1) * 2)">
+
+  <div class="addresses-header">
+    <h3>Mis direcciones</h3>
+  </div>
+
+  <div class="addresses-list" *ngIf="this.usuarioLogeado()?.direcciones?.length !== 0; else nodirs ">
+    <div class="address-item" *ngFor="let direc of this.usuarioLogeado()?.direcciones.slice(page * 2, (page + 1) * 2)">
       <app-mini-direccion [direcMostrar]="direc" (operarDireccion)="OperarDireccion($event)"></app-mini-direccion>
-      <br>
     </div>
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="2" [totalRecords]="this.usuarioLogeado()?.direcciones.length"
   [first]="page * 3"></p-paginator>
   </div>
   <ng-template #nodirs>
-    <div class="row">
-        <div class="col">
-            <span class="text-danger">* Por favor, crea una direccion de envio para poder realizar tus pedidos.</span>
-        </div>
+    <div class="empty-state">
+      <i class="pi pi-map-marker"></i>
+      <span>Por favor, crea una direccion de env&iacute;o para poder realizar tus pedidos.</span>
     </div>
-</ng-template>
+  </ng-template>
 </div>

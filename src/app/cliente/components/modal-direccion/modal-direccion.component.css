@@ -1,58 +1,168 @@
-/* Estilo para el label arriba y el input abajo */
-.form-group {
+:host {
+  display: block;
+  color: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container,
+form {
+  width: 100%;
+}
+
+.form-section {
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #333;
+}
+
+.form-section:last-of-type {
+  margin-bottom: 18px;
+}
+
+h5 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.p-field {
+  margin-bottom: 16px;
+}
+
+.p-field app-result-bar {
+  display: block;
+}
+
+label,
+.form-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #f1f1f1;
+  font-size: .9rem;
+  font-weight: 800;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #4a4a4a;
+  border-radius: 7px;
+  background: #444;
+  color: #fff;
+  font: inherit;
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+select {
+  appearance: auto;
+  background: #050505;
+  color: #d7d7d7;
+}
+
+input:hover,
+select:hover {
+  border-color: #5a5a5a;
+  background: #494949;
+}
+
+select:hover {
+  background: #111;
+}
+
+input:focus,
+select:focus {
+  border-color: #d71920;
+  box-shadow: 0 0 0 2px rgba(215, 25, 32, .2);
+}
+
+.radio-group {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 9px;
+  background: #242424;
 }
 
-/* Estilo para el botón de cancelar */
-/* Estilo para el botón de Cancelar */
-.btn-cancel {
-  background-color: #f5f5f5;
-  color: #000000;
-  border:1px solid #000000;
-  margin-right: 10px;
-  padding: .785rem 2rem;
-  line-height: 1.33333;
-  border-radius: .2143rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.btn-cancel:hover {
-  background-color: #000000;
-  color: #fff;
-}
-.btn-orange {
-  color: #ff0000;
-  background-image: none;
-  background-color: transparent;
-  border-color: #ff0000;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid;
-  transition: all .2s ease-in-out;
-  padding: .785rem 2rem;
-  line-height: 1.33333;
-  border-radius: .2143rem;
+.radio-option label {
+  margin: 0;
+  color: #d7d7d7;
+  font-weight: 700;
 }
 
-.btn-orange:hover {
-  background-color: #ff0000;
-  color: #fff;
+:host ::ng-deep .p-radiobutton .p-radiobutton-box {
+  border-color: #777;
+  background: #111;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: #d71920;
+  background: #d71920;
 }
 
 .botones {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
 }
 
-/* Ajuste del espacio entre el último campo de entrada y los botones */
-.formgrid.grid {
-  margin-bottom: 20px; /* Puedes ajustar el valor según tus preferencias */
+.btn-cancel,
+.btn-orange {
+  min-height: 42px;
+  padding: 10px 20px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+}
+
+.btn-cancel {
+  border: 1px solid #4a4a4a;
+  background: #242424;
+  color: #f5f5f5;
+}
+
+.btn-cancel:hover {
+  border-color: #666;
+  background: #303030;
+}
+
+.btn-orange {
+  border: 1px solid #d71920;
+  background: #d71920;
+  color: #fff;
+}
+
+.btn-orange:hover {
+  border-color: #ff241f;
+  background: #ff241f;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 620px) {
+  .botones {
+    flex-direction: column-reverse;
+  }
+
+  .btn-cancel,
+  .btn-orange {
+    width: 100%;
+  }
 }
