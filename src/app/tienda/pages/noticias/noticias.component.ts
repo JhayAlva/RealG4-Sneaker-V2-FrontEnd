@@ -16,19 +16,19 @@ export class NoticiasComponent implements OnInit {
   constructor( private router:Router,private tiendaSvc:TiendaService){}
 
   async ngOnInit(){
-        this.responsiveOptions = [
+    this.responsiveOptions = [
       {
-          breakpoint: '800px',
+          breakpoint: '1200px',
           numVisible: 3,
-          numScroll: 3
+          numScroll: 1
       },
       {
-          breakpoint: '800px',
+          breakpoint: '820px',
           numVisible: 2,
-          numScroll: 2
+          numScroll: 1
       },
       {
-          breakpoint: '800px',
+          breakpoint: '560px',
           numVisible: 1,
           numScroll: 1
       }

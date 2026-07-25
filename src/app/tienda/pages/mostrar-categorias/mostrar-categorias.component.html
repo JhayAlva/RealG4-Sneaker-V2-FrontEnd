@@ -1,26 +1,50 @@
-<div class="card" *ngIf="isLoadingProductos" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
-</div>
+<section class="category-page">
+  <div class="loading-state" *ngIf="isLoadingProductos">
+    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="6" fill="transparent" animationDuration=".6s"></p-progressSpinner>
+  </div>
 
-<div class="product-list p-d-flex p-flex-wrap p-jc-center" *ngIf="!isLoadingProductos">
-  <div class="product p-mb-3 p-shadow-2" *ngFor="let item of productosResultado.slice(page * 6,(page + 1 )*6)">
-      <div class="product-info p-relative p-d-flex p-flex-column p-ai-center" style="cursor: pointer;" [routerLink]="['/es-Es/mostrar-producto',item._id]">
-          <div class="image-container">
+  <ng-container *ngIf="!isLoadingProductos">
+    <header class="category-header">
+      <div>
+        <span class="eyebrow">REALG4 Streetwear</span>
+      </div>
+      <div class="result-count">
+        <strong>{{ productosResultado.length }}</strong>
+        <span>productos</span>
+      </div>
+    </header>
+
+    <div class="empty-state" *ngIf="productosResultado.length === 0; else productos">
+      <i class="pi pi-box"></i>
+      <h2>No hay productos disponibles</h2>
+      <p>Prueba con otra categoria o vuelve mas tarde.</p>
+    </div>
+
+    <ng-template #productos>
+      <div class="product-list">
+        <article class="product" *ngFor="let item of productosResultado.slice(page * rows,(page + 1 )*rows)">
+          <div class="product-info" [routerLink]="['/es-Es/mostrar-producto',item._id]">
+            <div class="image-container">
               <span class="favorite-icon">
-                  <a class="pi pi-heart" style="font-size: 1rem; color: rgb(255, 0, 0)"></a>
+                <i class="pi pi-heart"></i>
               </span>
               <img [src]="item.imagenes[0]" [alt]="item.nombre" class="product-image">
+            </div>
+            <div class="product-copy">
+              <h2 class="product-title">{{ item.nombre }}</h2>
+              <span class="sale-label">Ultima venta</span>
+              <p class="product-price">{{ item.ultimaVenta | currency:'EUR':'symbol':'1.2-2' }}</p>
+            </div>
           </div>
-          <h2 class="product-title p-mt-2">{{ item.nombre }}</h2>
-          <span style="color: grey;">Última venta</span>
-          <p class="product-price">{{ item.ultimaVenta | currency:'EUR':'symbol':'1.2-2' }}</p>
+        </article>
       </div>
-  </div>
-</div>
 
-<p-paginator
-  (onPageChange)="onPageChange($event)"
-  [rows]="rows"
-  [totalRecords]="productosResultado.length"
-  [first]="page * rows"
-></p-paginator>
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [rows]="rows"
+        [totalRecords]="productosResultado.length"
+        [first]="page * rows"
+      ></p-paginator>
+    </ng-template>
+  </ng-container>
+</section>

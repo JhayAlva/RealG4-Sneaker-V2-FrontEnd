@@ -1,60 +1,64 @@
-<div class="content-container">
-  <div class="content-wrapper">
-    <div class="content-text">
+<main class="info-page">
+  <section class="info-hero">
+    <div class="hero-copy">
+      <span class="eyebrow">REALG4 Streetwear</span>
       <h1>El mercado cultural actual</h1>
       <p>
-        Nuestra misión es brindar acceso a los artículos más codiciados del mundo de la manera más inteligente posible. Compre y venda las mejores zapatillas, indumentaria, productos electrónicos, coleccionables, cromos y accesorios.
+        Nuestra mision es dar acceso a los articulos mas codiciados del streetwear
+        de una forma clara, segura y pensada para comprar con confianza.
       </p>
+      <button class="verify-button" [routerLink]="['/es-Es/verificacion']">
+        Conoce la verificacion
+      </button>
     </div>
-    <img src="../../../../assets/images/info.avif" class="content-image">
-  </div>
-  <div class="button-container">
-    <button [routerLink]="['/es-Es/verificacion']">Verificacion  +++++</button>
-  </div>
-</div>
-<br>
-<div class="container-item">
-  <div class="item">
-    <!-- Contenido para la fila 1 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/sneaker.svg" width="90px">
-    <h3>RealG4 Verificado</h3>
-    <p>Cada artículo vendido pasa por nuestro proceso de verificación patentado de varios pasos con nuestro equipo de expertos en verificación.</p>
-  </div>
 
-  <div class="item">
-    <!-- Contenido para la fila 1 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/graph-down.svg" width="90px">
-    <h3>Precios transparentes</h3>
-    <p>Nuestro mercado en tiempo real funciona igual que el mercado de valores: le permite comprar y vender los artículos más codiciados a su precio real de mercado.</p>
-  </div>
+    <div class="hero-media">
+      <img src="../../../../assets/images/info.avif" alt="Proceso RealG4">
+    </div>
+  </section>
 
-  <div class="item">
-    <!-- Contenido para la fila 1 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/globe.svg" width="90px">
-    <h3>Acceso global</h3>
-    <p>Ya sea un prelanzamiento, limitado regionalmente o "agotado", nuestros millones de clientes de más de 200 países le permiten fácilmente Asegure esos artículos codiciados y difíciles de encontrar.</p>
-  </div>
+  <section class="trust-section">
+    <div class="section-heading">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Compra productos autenticos, al precio correcto y sin complicaciones.</h2>
+    </div>
 
-  <!-- Repite el mismo patrón para los otros elementos -->
+    <div class="trust-grid">
+      <article class="trust-card">
+        <i class="pi pi-check-circle"></i>
+        <h3>RealG4 verificado</h3>
+        <p>Cada articulo pasa por un proceso de revision para confirmar su estado antes de llegar al comprador.</p>
+      </article>
 
-  <div class="item">
-    <!-- Contenido para la fila 2 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/no-bs.svg" width="90px">
-    <h3>Sin tonterías</h3>
-    <p>Sin devoluciones de cargo, sin tomar fotografías, sin escribir descripciones atractivas y sin tratar con compradores o vendedores deshonestos. Nos encargamos de todo para asegurarnos de que pueda comprar y vender con confianza.</p>
-  </div>
+      <article class="trust-card">
+        <i class="pi pi-chart-line"></i>
+        <h3>Precios transparentes</h3>
+        <p>Trabajamos con referencias de mercado para que puedas comparar, decidir y comprar con mas seguridad.</p>
+      </article>
 
-  <div class="item">
-    <!-- Contenido para la fila 2 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/lock.svg" width="90px">
-    <h3>Seguro</h3>
-    <p>Preservar la integridad de nuestro mercado significa estar un paso por delante. Nuestros sistemas de seguridad y fraude, impulsados ​​por nuestros socios de clase mundial, tienen su información personal cubierta las 24 horas del día, los 7 días de la semana.</p>
-  </div>
+      <article class="trust-card">
+        <i class="pi pi-globe"></i>
+        <h3>Acceso global</h3>
+        <p>Encuentra lanzamientos dificiles, pares limitados y piezas que ya no estan disponibles en tiendas habituales.</p>
+      </article>
 
-  <div class="item">
-    <!-- Contenido para la fila 2 -->
-    <img src="https://images-wp.stockx.com/about/uploads/2022/08/customer-service.svg" width="90px">
-    <h3>Aquí para ti</h3>
-    <p>Muy pronto se implementara un centro de ayuda, gracias.</p>
-  </div>
-</div>
+      <article class="trust-card">
+        <i class="pi pi-shield"></i>
+        <h3>Sin sorpresas</h3>
+        <p>Reducimos fricciones entre comprador y vendedor para que la experiencia sea directa, ordenada y fiable.</p>
+      </article>
+
+      <article class="trust-card">
+        <i class="pi pi-lock"></i>
+        <h3>Compra segura</h3>
+        <p>Protegemos la informacion del usuario y mantenemos procesos pensados para evitar operaciones sospechosas.</p>
+      </article>
+
+      <article class="trust-card">
+        <i class="pi pi-comments"></i>
+        <h3>Aqui para ti</h3>
+        <p>Seguimos mejorando la atencion y el soporte para que puedas resolver tus dudas durante todo el proceso.</p>
+      </article>
+    </div>
+  </section>
+</main>

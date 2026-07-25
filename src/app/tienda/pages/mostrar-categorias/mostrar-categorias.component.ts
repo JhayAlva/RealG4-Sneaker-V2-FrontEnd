@@ -11,7 +11,7 @@ import { IProducto } from '../../interfaces/producto.interface';
 export class MostrarCategoriasComponent {
   public listaProductos!:Array<IProducto>[];
   public page:number = 0;
-  public rows:number = 6;
+  public rows:number = 8;
 
   constructor(private acticatedRoute: ActivatedRoute,
               private tiendaSvc:TiendaService){
@@ -20,6 +20,7 @@ export class MostrarCategoriasComponent {
                 async(parametros:ParamMap)=>{
                   let _pathCategoria = parametros.get('path')!;
 
+                  this.page = 0;
                   await this.tiendaSvc.getProductosByPath(_pathCategoria);
                 }
               );

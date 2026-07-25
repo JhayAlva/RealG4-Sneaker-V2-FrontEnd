@@ -1,7 +1,7 @@
-<div class="card">
+<div class="layout-header">
   <p-menubar [model]="menuItems">
     <ng-template pTemplate="start">
-      <img src="../../../assets/images/logo2.png" routerLink="/es-Es/home" class="img-responsive" style="cursor: pointer;max-width: 100px; max-height: 29px;">
+      <img src="../../../assets/images/logo2.png" routerLink="/es-Es/home" class="brand-logo">
     </ng-template>
     <ng-template pTemplate="item" let-item let-root="root">
       <a pRipple class="flex align-items-center p-menuitem-link">
@@ -10,39 +10,44 @@
       </a>
     </ng-template>
     <ng-template pTemplate="end">
-      <div class="flex align-items-center gap-2">
-        <tienda-search-bar/>
+      <div class="menu-actions">
+        <tienda-search-bar class="desktop-search"/>
         @if (!usuario()) {
-          <div class="card flex justify-content-center gap-3">
-            <div class="p-col">
+          <div class="auth-actions">
+            <div>
               <a routerLink="/auth/login" class="p-button font-bold">
                 Login
               </a>
             </div>
-            <div class="p-col">
+            <div>
               <a routerLink="/auth/registro" class="p-button font-bold">
                 Registro
               </a>
             </div>
           </div>
         }@else{
-          @if(usuario()?.avatar === ''){
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-            icon="pi pi-user"
-            size="normal"
-            [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }"
-            shape="circle"></p-avatar>
-          }@else {
-            <p-avatar [image]="usuario()?.avatar"
-            size="normal"
-            shape="circle"></p-avatar>
-          }
-          <span routerLink="/cliente/panel-cliente">{{usuario()?.nombre}}</span>
-          <p-button icon="pi pi-sign-out" [text]="true" (click)="logout()" [plain]="true"></p-button>
+          <div class="user-profile" routerLink="/cliente/panel-cliente">
+            @if(usuario()?.avatar === ''){
+              <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+              icon="pi pi-user"
+              size="normal"
+              [style]="{ 'background-color': '#2b2b2b', color: '#ffffff' }"
+              shape="circle"></p-avatar>
+            }@else {
+              <p-avatar [image]="usuario()?.avatar"
+              size="normal"
+              shape="circle"></p-avatar>
+            }
+            <span>{{usuario()?.nombre}}</span>
+          </div>
+          <p-button class="logout-button" icon="pi pi-sign-out" [text]="true" (click)="logout()" [plain]="true"></p-button>
         }
       </div>
     </ng-template>
   </p-menubar>
+  <div class="mobile-search">
+    <tienda-search-bar/>
+  </div>
 </div>
 <router-outlet></router-outlet>
 <footer class="footer">

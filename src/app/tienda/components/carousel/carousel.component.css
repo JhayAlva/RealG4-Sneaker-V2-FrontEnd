@@ -1,8 +1,10 @@
 .carousel-container {
   max-width: 100%;
-  height: 600px;
-  margin: 20px auto;
+  aspect-ratio: 3.05 / 1;
+  max-height: 520px;
+  margin: 0 auto;
   overflow: hidden;
+  background: #1d1d1d;
 }
 
 .carousel {
@@ -22,13 +24,20 @@
   object-position: center;
 }
 
+@media only screen and (max-width: 1024px) {
+  .carousel-container {
+    aspect-ratio: 3 / 1;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .carousel-container {
-    height: 140px;
+    aspect-ratio: 2.9 / 1;
   }
 
   .carousel-cell img {
     object-fit: cover;
+    object-position: center;
   }
 
   ::ng-deep .flickity-prev-next-button {

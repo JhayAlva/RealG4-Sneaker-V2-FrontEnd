@@ -1,18 +1,25 @@
-<h1>Los más vendidos</h1>
-    <div class="carousel">
-      <div *ngFor="let producto of productosList; let i = index" class="carousel-cell" [routerLink]="['/es-Es/mostrar-producto',producto._id]">
-        <img [src]="producto.imagenes[0]" [alt]="producto.nombre" />
-        <h1>{{ producto.nombre }}</h1>
-        <p>Precio: ${{ producto.ultimaVenta }}</p>
-      </div>
-      <div *ngIf="productosList.length === 0">
-        <div class="card flex justify-content-center">
-          <p-progressSpinner
-              styleClass="w-4rem h-4rem"
-              strokeWidth="8"
-              fill="var(--surface-ground)"
-              animationDuration=".5s" />
-        </div>
-      </div>
+<div class="product-rail" *ngIf="productosList.length > 0; else loading">
+  <article
+    *ngFor="let producto of productosList"
+    class="product-card"
+    [routerLink]="['/es-Es/mostrar-producto',producto._id]">
+    <div class="product-image">
+      <img [src]="producto.imagenes[0]" [alt]="producto.nombre" />
     </div>
+    <div class="product-info">
+      <h3>{{ producto.nombre }}</h3>
+      <span>Ultima venta</span>
+      <strong>{{ producto.ultimaVenta | currency:'EUR':'symbol':'1.2-2' }}</strong>
+    </div>
+  </article>
+</div>
 
+<ng-template #loading>
+  <div class="loading-state">
+    <p-progressSpinner
+      styleClass="w-4rem h-4rem"
+      strokeWidth="8"
+      fill="transparent"
+      animationDuration=".5s" />
+  </div>
+</ng-template>

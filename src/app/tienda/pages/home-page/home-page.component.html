@@ -1,44 +1,61 @@
-<div class="content p-flex-1">
-  <section class="p-d-flex p-jc-center p-ai-center p-mb-4">
-    <div class="p-card p-p-3">
-      <tienda-carousel/>
+<main class="home-page">
+  <section class="home-block hero-block">
+    <div class="home-card hero-card">
+      <tienda-carousel />
     </div>
   </section>
-  <section class="p-d-flex p-jc-center p-ai-center p-mb-4">
-    <div class="p-card p-p-3">
-      <tienda-carousel-productos/>
+
+  <section class="home-block">
+    <div class="home-card">
+      <div class="section-heading">
+        <span class="eyebrow">REALG4 Streetwear</span>
+        <h1>Los mas vendidos</h1>
+      </div>
+      <tienda-carousel-productos />
     </div>
   </section>
-  <section class="p-d-flex p-jc-center p-ai-center p-mb-4">
-    <div class="p-card p-p-3">
-      <h1>Marcas Populares</h1>
+
+  <section class="home-block">
+    <div class="home-card">
+      <div class="section-heading">
+        <span class="eyebrow">Comprar por categoria</span>
+        <h2>Marcas populares</h2>
+      </div>
+
       <div class="horizontal-scroll">
-        <div class="item">
-          <img src="../../../../assets/images/jordansneakers.webp" alt="Jordan Sneakers" [routerLink]="['/es-Es/productos','1-1']">
-        </div>
-        <div class="item">
-          <img src="../../../../assets/images/suprememay.webp" alt="Supreme May" [routerLink]="['/es-Es/productos','2-1']">
-        </div>
-        <div class="item">
-          <img src="../../../../assets/images/louismay.webp" alt="Louis May">
-        </div>
-        <div class="item">
-          <img src="../../../../assets/images/ps5may.webp" alt="PS5 May" [routerLink]="['/es-Es/productos','5-1']">
-        </div>
+        <article class="brand-item" [routerLink]="['/es-Es/productos','1-1']">
+          <img src="../../../../assets/images/jordansneakers.webp" alt="Jordan Sneakers">
+          <span>Jordan</span>
+        </article>
+
+        <article class="brand-item" [routerLink]="['/es-Es/productos','2-1']">
+          <img src="../../../../assets/images/suprememay.webp" alt="Supreme">
+          <span>Supreme</span>
+        </article>
+
+        <article class="brand-item">
+          <img src="../../../../assets/images/louismay.webp" alt="Louis Vuitton">
+          <span>Louis Vuitton</span>
+        </article>
+
+        <article class="brand-item" [routerLink]="['/es-Es/productos','5-1']">
+          <img src="../../../../assets/images/ps5may.webp" alt="PlayStation 5">
+          <span>PlayStation</span>
+        </article>
       </div>
     </div>
   </section>
-  <br>
-  <section class="p-d-flex p-jc-center p-ai-center p-mb-4">
-    <div class="p-card p-p-3">
+
+  <section class="home-block">
+    <div class="home-card">
       <div class="image-section">
         <div class="image-container">
-          <img src="../../../../assets/images/FathersDay_Shop_SecondaryA.webp" alt="">
+          <img src="../../../../assets/images/FathersDay_Shop_SecondaryA.webp" alt="Seleccion especial RealG4">
         </div>
         <div class="image-container">
-          <img src="../../../../assets/images/Sun_Day_Red-Tiger_Woods-BannersSecondaryA_copy.webp" alt="">
+          <img src="../../../../assets/images/Sun_Day_Red-Tiger_Woods-BannersSecondaryA_copy.webp" alt="Lanzamientos destacados RealG4">
         </div>
       </div>
     </div>
   </section>
-</div>
+</main>
