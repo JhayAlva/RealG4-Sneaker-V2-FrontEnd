@@ -1,13 +1,7 @@
-<div class="layout-header">
-  <p-menubar [model]="menuItems">
+<div #layoutHeader class="layout-header">
+  <p-menubar #mainMenubar [model]="menuItems">
     <ng-template pTemplate="start">
       <img src="../../../assets/images/logo2.png" routerLink="/es-Es/home" class="brand-logo">
-    </ng-template>
-    <ng-template pTemplate="item" let-item let-root="root">
-      <a pRipple class="flex align-items-center p-menuitem-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-      </a>
     </ng-template>
     <ng-template pTemplate="end">
       <div class="menu-actions">

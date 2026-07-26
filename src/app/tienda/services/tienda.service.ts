@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environments';
 import { Observable, catchError, delay, lastValueFrom, map, tap, throwError } from 'rxjs';
 import { IPedido } from '../interfaces/pedido.interface';
 import { IDatosPago } from '../interfaces/datosPago.interface';
+import { ICategoria } from '../interfaces/categoria.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,12 @@ export class TiendaService {
              })
     }
   }
+
+  getCategorias():Promise<Array<ICategoria>>{
+    const url = `${this.baseUrl}/tienda/GetCategoias`;
+    return lastValueFrom(this.http.get<Array<ICategoria>>(url));
+  }
+
 
   RecuperarProductosJordan11(path:String):Promise<Array<IProducto>>{
     return lastValueFrom(

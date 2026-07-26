@@ -134,6 +134,83 @@ a {
   color: #e62a34;
 }
 
+.submenu-indicator {
+  font-size: .72rem;
+  color: #a8a8a8;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list {
+  gap: 4px;
+  width: min(280px, calc(100vw - 28px));
+  overflow: visible;
+  padding: 10px;
+  border: 1px solid #343434;
+  border-radius: 8px;
+  background: #1e1e1e;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, .35);
+  scrollbar-width: thin;
+  scrollbar-color: #4a4a4a #1e1e1e;
+}
+
+:host ::ng-deep .p-menubar-root-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+  width: min(560px, calc(100vw - 28px));
+  max-height: none;
+  overflow: visible;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
+  display: block;
+  left: calc(100% + 8px);
+  top: -10px;
+  width: min(320px, calc(100vw - 28px));
+  max-height: none;
+  overflow: visible;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list .p-submenu-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
+  right: auto;
+  left: calc(100% + 8px);
+  top: -10px;
+  width: min(240px, calc(100vw - 28px));
+  max-height: min(58vh, 420px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #4a4a4a;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list .p-menuitem {
+  min-width: 0;
+  margin: 0;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list .p-menuitem-link {
+  min-height: 44px;
+  border-radius: 7px;
+  padding: 11px 12px;
+  color: #f2f2f2;
+  white-space: normal;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list .p-menuitem-icon {
+  color: #e62a34;
+}
+
+:host ::ng-deep .p-menubar .p-submenu-list .p-menuitem-link:hover,
+:host ::ng-deep .p-menubar .p-submenu-list .p-menuitem-link:focus {
+  background: #2a2a2a;
+  color: #fff;
+}
+
 :host ::ng-deep .p-button {
   border: 1px solid #d71920;
   border-radius: 9px;
@@ -185,6 +262,34 @@ a {
     border: 1px solid #2b2b2b;
     border-radius: 10px;
     background: #1e1e1e;
+  }
+
+  :host ::ng-deep .p-menubar .p-submenu-list {
+    position: static;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 42vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 6px;
+    box-shadow: none;
+  }
+
+  :host ::ng-deep .p-menubar .p-submenu-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-height: none;
+    margin: 6px 0 0 12px;
+    overflow: visible;
+  }
+
+  :host ::ng-deep .p-menubar .p-submenu-list .p-submenu-list > .p-menuitem-active > p-menubarsub > .p-submenu-list {
+    left: auto;
+    right: auto;
+    top: auto;
   }
 
   :host ::ng-deep .p-menubar-end {
