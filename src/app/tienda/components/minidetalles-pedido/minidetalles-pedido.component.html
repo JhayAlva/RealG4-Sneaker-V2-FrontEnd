@@ -1,80 +1,65 @@
-<div class="container-detalles">
-  <div class="talla">
-    <div class="talla-info">
-        <p>Size: </p>
-        <p><strong>{{this.sizeSelected}}</strong></p>
+<div class="details-card">
+  <section class="detail-row">
+    <div>
+      <span>Talla</span>
+      <strong>{{ sizeSelected }}</strong>
     </div>
-    <div class="botones-info">
-      <button class="botones-info" value="cambiarTalla" (click)="obtenerValueBoton($event)">EDITAR</button>
+    <button class="edit-button" value="cambiarTalla" (click)="obtenerValueBoton($event)">Editar</button>
+  </section>
+
+  <section class="price-card">
+    <span>Comprar ahora</span>
+    <strong>{{ total | currency:'EUR':'symbol':'1.2-2' }}</strong>
+
+    <div class="price-line">
+      <span>Subtotal articulos</span>
+      <strong>{{ subtotal | currency:'EUR':'symbol':'1.2-2' }}</strong>
     </div>
-  </div>
-  <br>
-  <div class="precio">
-      <p>Comprar ahora</p>
-      <div class="precio-info">
-        <p>€</p>
-        <p><strong>{{this.total}}</strong></p>
-      </div>
-      <br>
-      <p>Subtotal articulos</p>
-      <div class="precio-info">
-        <p>€</p>
-        <p class="card-text">{{this.subtotal}} </p>
-      </div>
-      <br>
-      <p>Gastos Envio</p>
-      <div class="precio-info">
-        <p>€</p>
-        <p>{{this.gastosEnvio}}</p>
-      </div>
+    <div class="price-line">
+      <span>Gastos envio</span>
+      <strong>{{ gastosEnvio | currency:'EUR':'symbol':'1.2-2' }}</strong>
     </div>
-  <br>
-  <div class="metodoPago">
-    <div class="metodoPago-info">
-      <div *ngIf="this.datosPago; else sinPago">
-        <div *ngIf="this.metodoPago === 'tarjeta';else payPal">
+  </section>
+
+  <section class="detail-row">
+    <div class="payment-summary">
+      <ng-container *ngIf="datosPago; else sinPago">
+        <ng-container *ngIf="metodoPago === 'tarjeta'; else payPal">
           <i class="pi pi-credit-card"></i>
-          {{ truncarNumeroTarjeta(datosPago.numeroTarjeta) }}
-        </div>
+          <span>{{ truncarNumeroTarjeta(datosPago.numeroTarjeta) }}</span>
+        </ng-container>
         <ng-template #payPal>
           <i class="pi pi-paypal"></i>
-          Paypal
+          <span>PayPal</span>
         </ng-template>
-      </div>
+      </ng-container>
       <ng-template #sinPago>
         <i class="pi pi-credit-card"></i>
-        Por favor agregue un método de pago
+        <span>Agrega un metodo de pago</span>
       </ng-template>
     </div>
-    <div>
-      <button class="botones-info" value="pago" (click)="obtenerValueBoton($event)">EDITAR</button>
-    </div>
-  </div>
-  <div class="direccion">
-    <div class="direccion-info">
-      <div class="flex align-items-center" *ngFor="let direc of usuario()?.direcciones | filterPrincipal;let i = index">
-        <input
+    <button class="edit-button" value="pago" (click)="obtenerValueBoton($event)">Editar</button>
+  </section>
+
+  <section class="address-card">
+    <span>Direccion principal</span>
+    <div class="address-option" *ngFor="let direc of (usuario()?.direcciones ?? []) | filterPrincipal; let i = index">
+      <input
         type="radio"
         [value]="direc"
         (click)="seleccionarDireccion(direc)"
         name="direccionesGroup"
-        id="direc">
-        <label for="direc">{{ direc.calle }}</label>
-      </div>
-      <ng-template #esprinci>
-        <i class="pi pi-home"></i>
-        Por favor agregue una direccion
-      </ng-template>
+        [id]="'direc-' + i">
+      <label [for]="'direc-' + i">{{ direc.calle }}</label>
     </div>
-  </div>
-  <br>
-  <div style="text-align: center;">
-    <img src="../../../../assets/images/logo-no-background.png" width="50%">
-  </div>
-  <br>
-  <div class="botones">
-    <button class="boton-atras" (click)="Cancelar()">ATRAS</button>
-    <button class="boton-siguiente" (click)="FinalizarPedido()" >SIGUIENTE</button>
+  </section>
+
+  <div class="brand-mark">
+    <img src="../../../../assets/images/logo-no-background.png" alt="REALG4">
   </div>
 
+  <div class="actions">
+    <button class="back-button" (click)="Cancelar()">Atras</button>
+    <button class="next-button" (click)="FinalizarPedido()">Siguiente</button>
+  </div>
 </div>

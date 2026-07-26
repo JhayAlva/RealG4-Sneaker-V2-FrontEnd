@@ -1,6 +1,6 @@
 <input type="text"
 #txtQuery
-(keyup)="onQueryChange(txtQuery.value,$event)"
+(input)="onQueryChange(txtQuery.value,$event)"
 pInputText
 placeholder="Search" class="w-8rem sm:w-auto" />
 
@@ -14,7 +14,7 @@ placeholder="Search" class="w-8rem sm:w-auto" />
             <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
           </div>
         </div>
-        <ul class="lista-productos" *ngIf="!isLoadingProductos">
+        <ul class="lista-productos" *ngIf="!isLoadingProductos && productosResultado.length > 0">
           <li *ngFor="let item of productosResultado" class="producto" style="cursor: pointer;">
             <div class="producto-contenido"  [routerLink]="['/es-Es/mostrar-producto',item._id]">
               <img class="producto-imagen" [src]="item.imagenes[0]" alt="{{ item.nombre }}">

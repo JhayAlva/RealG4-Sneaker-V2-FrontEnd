@@ -1,14 +1,18 @@
-<div class="container">
-  <ul class="dropdown-list" *ngFor="let variacionesNivel1 of this.variaciones">
-    <li *ngFor="let variacion of variacionesNivel1">
-      <div class="mini-tarjeta" (click)="SeleccionarVariacion(variacion.talla,variacion.precio)">
-          <a>{{ variacion.talla }}</a>
-          <br>
-          <span class="price">€{{ variacion.precio }}</span>
-      </div>
-    </li>
-  </ul>
-  <div>
-    <button class="boton-atras" (click)="Atras()">CANCELAR</button>
+<div class="size-picker">
+  <div class="picker-heading">
+    <span>Selecciona talla</span>
+    <h3>Cambia la talla del producto</h3>
   </div>
+
+  <div class="size-grid" *ngFor="let variacionesNivel1 of variaciones">
+    <button
+      class="size-card"
+      *ngFor="let variacion of variacionesNivel1"
+      (click)="SeleccionarVariacion(variacion.talla, variacion.precio)">
+      <strong>{{ variacion.talla }}</strong>
+      <span>{{ variacion.precio | currency:'EUR':'symbol':'1.2-2' }}</span>
+    </button>
+  </div>
+
+  <button class="back-button" (click)="Atras()">Cancelar</button>
 </div>

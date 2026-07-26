@@ -1,35 +1,58 @@
-<div class="container">
-  <div class="producto" *ngIf="(this.items$ | async ) as items">
-    <div *ngFor="let item of items">
-      <div class="producto-info">
-        <h2 class="name-producto">{{item.productoItem.nombre}}</h2>
-        <div class="size-info">
-          <p>Size: </p>
-          <p>{{this.tallaSelected}}</p>
-        </div>
-        <img [src]="item.productoItem.imagenes[0]" width="110%">
+<main class="checkout-page">
+  <section class="checkout-shell">
+    <div class="product-summary" *ngIf="(items$ | async) as items">
+      <div class="summary-heading">
+        <span>REALG4 Checkout</span>
+        <h1>Resumen del pedido</h1>
       </div>
+
+      <article class="product-card" *ngFor="let item of items">
+        <div class="product-copy">
+          <h2>{{ item.productoItem.nombre }}</h2>
+          <div class="size-pill">
+            <span>Talla</span>
+            <strong>{{ tallaSelected }}</strong>
+          </div>
+        </div>
+
+        <div class="product-media">
+          <img [src]="item.productoItem.imagenes[0]" [alt]="item.productoItem.nombre">
+        </div>
+      </article>
     </div>
-  </div>
-  <div class="detalles">
-    <div *ngIf="this.cambiarModal == 'principal' ">
-      <app-minidetalles-pedido [priceSelected]="this.priceSeleted" [datosPago]="this.datosPago"
-        [metodoPago]="this.metodoDePago" [sizeSelected]="this.tallaSelected" [idProducto]="this.idProducto!"
-        (cambiarModal)="CambiarModalEvent($event)">
-      </app-minidetalles-pedido>
-    </div>
-    <div *ngIf="this.cambiarModal == 'cambiarTalla' ">
-      <app-mini-cambiar-talla [variaciones]="this.variacionesA" (volverAPrincipal)="CambiarModalEvent('principal')"
-        (variacionesModificadas)="ModificarTalla($event)"></app-mini-cambiar-talla>
-    </div>
-    <div *ngIf="this.cambiarModal == 'pago' ">
-      <app-mini-metodo-pago (volverAPrincipal)="CambiarModalEvent('principal')" (datosPagoEvent)="GetDatosPago($event)"
-      (EventMetodoPago)="MetodoPago($event)">
-      </app-mini-metodo-pago>
-      <!-- <app-mini-metodo-pago [estilo]="this.estiloProducto"
-    (datosPagoEvent)="RecogerDatosPago($event)"
-    (metodoPagoEvent)="MetodoPago($event)">
-    </app-mini-metodo-pago> -->
-    </div>
-  </div>
-</div>
+
+    <aside class="checkout-details">
+      <div class="details-heading">
+        <span>Detalles</span>
+        <h2>Finaliza tu compra</h2>
+      </div>
+
+      <div class="details-content" *ngIf="cambiarModal == 'principal'">
+        <app-minidetalles-pedido
+          [priceSelected]="priceSeleted"
+          [datosPago]="datosPago"
+          [metodoPago]="metodoDePago"
+          [sizeSelected]="tallaSelected"
+          [idProducto]="idProducto!"
+          (cambiarModal)="CambiarModalEvent($event)">
+        </app-minidetalles-pedido>
+      </div>
+
+      <div class="details-content" *ngIf="cambiarModal == 'cambiarTalla'">
+        <app-mini-cambiar-talla
+          [variaciones]="variacionesA"
+          (volverAPrincipal)="CambiarModalEvent('principal')"
+          (variacionesModificadas)="ModificarTalla($event)">
+        </app-mini-cambiar-talla>
+      </div>
+
+      <div class="details-content" *ngIf="cambiarModal == 'pago'">
+        <app-mini-metodo-pago
+          (volverAPrincipal)="CambiarModalEvent('principal')"
+          (datosPagoEvent)="GetDatosPago($event)"
+          (EventMetodoPago)="MetodoPago($event)">
+        </app-mini-metodo-pago>
+      </div>
+    </aside>
+  </section>
+</main>

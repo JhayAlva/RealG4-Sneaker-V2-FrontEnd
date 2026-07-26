@@ -1,44 +1,77 @@
-.dropdown-list {
+:host {
+  display: block;
+}
+
+.size-picker {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.picker-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.picker-heading span {
+  color: #ff2424;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.picker-heading h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 10px;
-  list-style: none;
-  padding: 0;
-  background-color: #121212; /* Fondo oscuro para la lista */
 }
 
-.mini-tarjeta {
-  border: 1px solid #444; /* Bordes más oscuros */
-  padding: 10px;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: #1E1E1E; /* Fondo oscuro para las tarjetas */
-  color: #E0E0E0; /* Texto claro para contrastar con el fondo */
-}
-
-.mini-tarjeta a {
-  text-decoration: none;
-  font-weight: bold;
-  color: #ffffffc9; /* Color de enlace en modo nocturno */
-}
-
-.price {
-  color: #66e200; /* Ajuste de color para la clase price */
-}
-
-.boton-atras{
-  font-family: "SuisseIntl-Regular", sans-serif;
-  padding: 10px;
-  border: 1px solid;
-  background: transparent;
-  border-color: #E0E0E0; /* Bordes claros para el botón */
-  font-size: 1rem;
+.size-card {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #343434;
+  padding: 14px;
+  background: #101010;
+  color: #fff;
   cursor: pointer;
-  transition: color 0.3s, background-color 0.3s;
-  color: #E0E0E0; /* Color de texto claro */
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
 }
 
-.boton-atras:hover{
-  background-color: #333; /* Fondo oscuro al pasar el mouse */
-  color: #FFFFFF; /* Texto blanco al pasar el mouse */
+.size-card:hover {
+  border-color: #e11919;
+  background: #191919;
+  transform: translateY(-2px);
+}
+
+.size-card strong {
+  font-size: 1.05rem;
+}
+
+.size-card span {
+  color: #a8a8a8;
+  font-size: .86rem;
+}
+
+.back-button {
+  width: fit-content;
+  border: 1px solid #343434;
+  padding: 12px 18px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  border-color: #fff;
 }

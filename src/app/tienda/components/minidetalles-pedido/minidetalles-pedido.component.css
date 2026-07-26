@@ -1,129 +1,157 @@
-.talla {
+:host {
   display: flex;
-  align-items: center;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: white; /* Texto claro */
-  font-family: "SuisseIntl-Medium", sans-serif;
-  font-size: small;
-  padding: 10px;
-  height: 50px;
-  justify-content: space-between;
-}
-
-.talla-info {
-  display: flex; /* Alinea los elementos dentro de este div uno al lado del otro */
-  align-items: center;
-}
-
-.talla p + p {
-  margin-left: 5px; /* Agrega espacio entre los dos párrafos */
-}
-
-.talla-numero::before {
-  content: '"';
-  margin-right: 5px;
-}
-
-.precio {
-  font-family: "SuisseIntl-Medium", sans-serif;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: white; /* Texto claro */
-  padding: 10px;
-  display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
-.precio p {
-  margin: 0;
+.details-card {
+  display: grid;
+  flex: 1;
+  gap: 14px;
+  align-content: start;
 }
 
-.precio-info {
+.detail-row,
+.price-card,
+.address-card {
+  border: 1px solid #343434;
+  background: #101010;
+}
+
+.detail-row {
   display: flex;
   align-items: center;
-  margin-top: 10px;
-}
-
-.precio-info p {
-  margin: 0;
-  vertical-align: middle;
-}
-
-.precio-info strong {
-  font-size: clamp(24px, calc(0.7407407407vw + 21.3333333333px), 32px);
-}
-
-.metodoPago {
-  display: flex;
-  font-family: "SuisseIntl-Medium", sans-serif;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: white; /* Texto claro */
-  padding: 10px;
   justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
 }
 
-.direccion {
+.detail-row div,
+.price-card,
+.address-card {
+  display: grid;
+  gap: 7px;
+}
+
+span {
+  color: #a8a8a8;
+  font-size: .78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+strong {
+  color: #fff;
+}
+
+.price-card {
+  padding: 18px;
+}
+
+.price-card > strong {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 950;
+}
+
+.price-line {
   display: flex;
-  font-family: "SuisseIntl-Medium", sans-serif;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: white; /* Texto claro */
-  padding: 10px;
   justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #2c2c2c;
 }
 
-.metodoPago, .direccion {
-  margin-bottom: 3px;
+.payment-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.botones {
-  text-align: left; /* Alinea los botones a la izquierda */
+.payment-summary i {
+  color: #ff2424;
 }
 
-.boton-siguiente {
-  font-family: "SuisseIntl-Regular", sans-serif;
-  padding: 10px;
-  float: right;
-  background-color: rgb(184, 2, 2);
-  color: white;
-  border: 1px solid #fff; /* Cambiado a blanco para contraste */
-  font-size: 1rem;
-  transition: color 0.3s, background-color 0.3s;
+.edit-button,
+.back-button,
+.next-button {
+  border: 0;
+  font: inherit;
+  font-weight: 900;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
-.boton-siguiente:hover {
-  background-color: rgb(8, 2, 2);
-  color: white;
-}
-
-.boton-atras {
-  font-family: "SuisseIntl-Regular", sans-serif;
-  padding: 10px;
-  border: 1px solid;
+.edit-button {
   background: transparent;
-  border-color: #fff; /* Cambiado a blanco para contraste */
-  color: white; /* Texto claro */
-  font-size: 1rem;
+  color: #ff2424;
+}
+
+.edit-button:hover {
+  color: #fff;
+}
+
+.address-card {
+  padding: 16px;
+}
+
+.address-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.address-option input {
+  accent-color: #e11919;
+}
+
+.address-option label {
   cursor: pointer;
-  transition: color 0.3s, background-color 0.3s;
 }
 
-.boton-atras:hover {
-  background-color: rgb(8, 2, 2);
-  color: white;
+.brand-mark {
+  display: grid;
+  place-items: center;
+  margin-top: auto;
+  padding: 8px 0;
 }
 
-.botones-info {
-  color: rgb(190, 10, 10);
-  font-family: "SuisseIntl-Regular", sans-serif;
-  font-size: small;
-  border: none;
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: white; /* Texto claro */
-  cursor: pointer;
-  transition: color 0.3s, background-color 0.3s;
+.brand-mark img {
+  width: min(170px, 46%);
 }
 
-.botones-info:hover {
-  color: white;
-  background-color: rgb(190, 10, 10);
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.back-button,
+.next-button {
+  padding: 14px 18px;
+}
+
+.back-button {
+  border: 1px solid #343434;
+  background: transparent;
+  color: #fff;
+}
+
+.next-button {
+  background: #e11919;
+  color: #fff;
+}
+
+.back-button:hover {
+  border-color: #fff;
+}
+
+.next-button:hover {
+  background: #ff2c2c;
+}
+
+@media (max-width: 520px) {
+  .actions {
+    grid-template-columns: 1fr;
+  }
 }

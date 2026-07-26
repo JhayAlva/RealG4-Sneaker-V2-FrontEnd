@@ -9,7 +9,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class SearchBarComponent {
 
-  private debounceTimer?:NodeJS.Timeout;
+  private debounceTimer?:ReturnType<typeof setTimeout>;
 
   constructor(private tiendaSvc:TiendaService,
               private confirmationService: ConfirmationService){}
@@ -23,27 +23,32 @@ export class SearchBarComponent {
   }
 
   onQueryChange(value:string,event:Event){
-    if(this.debounceTimer) clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(() => {
-      if(value.length == 0){
-        throw new Error('No se encontro nada');
-      }
+    const query = value.trim();
 
-      this.tiendaSvc.getProductosByQuery(value);
+    if(this.debounceTimer) clearTimeout(this.debounceTimer);
+
+    if(query.length === 0){
+      this.tiendaSvc.clearProductosSearch();
+      this.confirmationService.close();
+      return;
+    }
+
+    this.debounceTimer = setTimeout(() => {
+      this.tiendaSvc.getProductosByQuery(query);
+      this.confirm(event);
     }, 350);
-    this.confirm(event);
   }
 
   confirm(event: Event) {
     if (!event || !event.target) {
       return; // Salir si el evento está vacío
     }
-   setTimeout(()=>{this.confirmationService.confirm({
-    target: event.target as EventTarget,
-    acceptButtonStyleClass:'none',
-    acceptVisible:false,
-    rejectVisible: false,
-    });},900)
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      acceptButtonStyleClass:'none',
+      acceptVisible:false,
+      rejectVisible: false,
+    });
 }
 
 }

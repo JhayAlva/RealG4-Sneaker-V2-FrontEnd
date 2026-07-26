@@ -7,7 +7,7 @@ import { IDireccion } from '../../auth/interfaces/direccion.interface';
 })
 export class FilterPrincipalPipe implements PipeTransform {
 
-  transform(direcciones: IDireccion[]): IDireccion[] {
+  transform(direcciones: IDireccion[] | null | undefined): IDireccion[] {
     if (!direcciones) return [];
     return direcciones.filter(direccion => direccion.direcPrincipal === true);
   }

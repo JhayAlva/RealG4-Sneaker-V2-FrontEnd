@@ -15,6 +15,7 @@ export class TiendaService {
 
   public resultProductos:IProducto[]=[];
   public isLoadingProductos:boolean = false;
+  private activeSearchQuery:string = '';
 
   constructor(private http:HttpClient) { }
 
@@ -26,18 +27,37 @@ export class TiendaService {
     return this.http.get<IProducto>(`${this.baseUrl}/tienda/${id}`);
   }
 
+  clearProductosSearch(){
+    this.activeSearchQuery = '';
+    this.resultProductos = [];
+    this.isLoadingProductos = false;
+  }
+
   getProductosByQuery(query:string){
-    if(query.length === 0){
-      this.resultProductos=[];
-      this.isLoadingProductos=false;
+    const normalizedQuery = query.trim();
+
+    if(normalizedQuery.length === 0){
+      this.clearProductosSearch();
       return;
     }else{
+      this.activeSearchQuery = normalizedQuery;
       this.isLoadingProductos=true;
-      const params = new HttpParams().set('query',query);
+      this.resultProductos=[];
+      const params = new HttpParams().set('query',normalizedQuery);
       this.http.get<IProducto[]>(`${this.baseUrl}/tienda/search`,{params})
-          .subscribe(resp=>{
-            this.isLoadingProductos=false;
-            this.resultProductos = resp;
+          .subscribe({
+            next: resp=>{
+              if(this.activeSearchQuery !== normalizedQuery) return;
+
+              this.isLoadingProductos=false;
+              this.resultProductos = resp;
+            },
+            error: () => {
+              if(this.activeSearchQuery !== normalizedQuery) return;
+
+              this.resultProductos=[];
+              this.isLoadingProductos=false;
+            }
           });
     }
   }
