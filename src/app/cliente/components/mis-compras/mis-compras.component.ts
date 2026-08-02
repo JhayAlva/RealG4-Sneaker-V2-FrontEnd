@@ -106,14 +106,16 @@ export class MisComprasComponent {
     const nombreCompleto = [direccion?.datosEnvio?.nombre, direccion?.datosEnvio?.apellidos].filter(Boolean).join(' ');
     const municipioProvincia = [direccion?.municipio?.DMUN50, direccion?.provincia?.PRO].filter(Boolean).join(', ');
     const cpPais = [direccion?.cp, direccion?.pais].filter(Boolean).join(' - ');
-    const direccionLineas = [
+    const direccionLineas: string[] = [
       nombreCompleto,
       direccion?.calle,
       [cpPais, municipioProvincia].filter(Boolean).join(' | '),
       direccion?.datosEnvio?.telefono ? `Telefono: ${direccion.datosEnvio.telefono}` : '',
       direccion?.datosEnvio?.nifcif ? `NIF/CIF: ${direccion.datosEnvio.nifcif}` : '',
       !direccion && pedido.direccionEnvio ? `Referencia direccion: ${pedido.direccionEnvio}` : ''
-    ].filter(Boolean);
+    ]
+      .map((linea) => String(linea || '').trim())
+      .filter((linea) => linea.length > 0);
 
     direccionLineas.forEach((linea) => {
       const lineasPdf = doc.splitTextToSize(linea, pageWidth - margin * 2);
@@ -234,6 +236,8 @@ export class MisComprasComponent {
   }
 
 }
+
+
 
 
 
