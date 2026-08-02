@@ -1,7 +1,9 @@
-import { Component, computed, OnInit } from '@angular/core';
+﻿import { Component, computed } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { IPedido } from '../../../tienda/interfaces/pedido.interface';
 import { Router } from '@angular/router';
+import { jsPDF } from 'jspdf';
+import { IDireccion } from '../../../auth/interfaces/direccion.interface';
 
 @Component({
   selector: 'app-mis-compras',
@@ -14,33 +16,21 @@ export class MisComprasComponent {
   public pedidos: Array<IPedido> = [];
   public page: number = 0;
   public isLoading: boolean = true;
-  // public imgPdf!: IPdf[];
+
   constructor(private authSvc: AuthService, private router: Router) {
     const usuario = this.usuarioLogeado();
     if (usuario?._id) {
       this.recuperarPedidos(usuario);
-    } else {
-      // Manejar el caso en el que el usuario no esté logeado o no tenga un ID válido
-
     }
-
-    // this.authSvc.getImgPdf().then(img => {
-    //   this.imgPdf = img
-    // });
   }
 
   async recuperarPedidos(usuario: any) {
-    // Activamos el spinner antes de realizar la llamada
     this.isLoading = true;
     try {
-      // Recuperamos los pedidos del servicio
       this.pedidos = await this.authSvc.recuperarPedidosUsuario(usuario._id);
-
     } catch (error) {
-
-      // Opcional: manejar el error y tal vez mostrar un mensaje de error al usuario
+      console.error('Error al recuperar pedidos:', error);
     } finally {
-      // Desactivamos el spinner una vez que los pedidos se han recuperado
       this.isLoading = false;
     }
   }
@@ -49,116 +39,201 @@ export class MisComprasComponent {
     switch (productEstado) {
       case 'Enviado':
         return 'success';
-
       case 'En preparacion':
         return 'warning';
-
       case 'Cancelado':
         return 'danger';
-
       default:
         return 'default';
     }
   }
 
-  descargarPdf(pedido:IPedido){
+  async descargarPdf(pedido: IPedido) {
+    console.log('Generando PDF para el pedido:', pedido);
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 18;
+    const facturaId = pedido._id || 'sin_id';
+    const usuario = this.usuarioLogeado();
+    const logo = await this.obtenerImagenBase64('assets/images/logo-realg.png');
+    let y = 18;
 
+    doc.setFillColor(18, 18, 18);
+    doc.rect(0, 0, pageWidth, 42, 'F');
+
+    if (logo) {
+      doc.addImage(logo, 'PNG', margin, 9, 24, 24);
+    }
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text('REALG4', logo ? margin + 30 : margin, 19);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.text('Factura de compra', logo ? margin + 30 : margin, 28);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(15);
+    doc.text('Gracias por tu compra', pageWidth - margin, 22, { align: 'right' });
+
+    y = 56;
+    doc.setTextColor(28, 28, 28);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.text('Datos del pedido', margin, y);
+    y += 8;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.text(`N. factura: ${facturaId}`, margin, y);
+    doc.text(`Estado: ${pedido.estadoPedido || '-'}`, 118, y);
+    y += 7;
+    doc.text(`Fecha: ${this.formatearFecha(pedido.fechaPedido)}`, margin, y);
+    doc.text(`Facturado a: ${usuario?.email || '-'}`, 118, y);
+    y += 10;
+
+    doc.setFont('helvetica', 'bold');
+    doc.text('Direccion de envio', margin, y);
+    y += 7;
+    doc.setFont('helvetica', 'normal');
+
+    const direccion = typeof pedido.direccionEnvio === 'string'
+      ? usuario?.direcciones?.find((dir: IDireccion) => String(dir._id) === pedido.direccionEnvio)
+      : pedido.direccionEnvio;
+
+    const nombreCompleto = [direccion?.datosEnvio?.nombre, direccion?.datosEnvio?.apellidos].filter(Boolean).join(' ');
+    const municipioProvincia = [direccion?.municipio?.DMUN50, direccion?.provincia?.PRO].filter(Boolean).join(', ');
+    const cpPais = [direccion?.cp, direccion?.pais].filter(Boolean).join(' - ');
+    const direccionLineas = [
+      nombreCompleto,
+      direccion?.calle,
+      [cpPais, municipioProvincia].filter(Boolean).join(' | '),
+      direccion?.datosEnvio?.telefono ? `Telefono: ${direccion.datosEnvio.telefono}` : '',
+      direccion?.datosEnvio?.nifcif ? `NIF/CIF: ${direccion.datosEnvio.nifcif}` : '',
+      !direccion && pedido.direccionEnvio ? `Referencia direccion: ${pedido.direccionEnvio}` : ''
+    ].filter(Boolean);
+
+    direccionLineas.forEach((linea) => {
+      const lineasPdf = doc.splitTextToSize(linea, pageWidth - margin * 2);
+      doc.text(lineasPdf, margin, y);
+      y += lineasPdf.length * 5.5;
+    });
+    y += 6;
+
+    doc.setDrawColor(225, 225, 225);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.text('Detalles de tu pedido', margin, y);
+    y += 9;
+
+    doc.setFontSize(10);
+    doc.text('Producto', margin, y);
+    doc.text('Talla', 102, y);
+    doc.text('Cant.', 128, y);
+    doc.text('Precio', 150, y);
+    doc.text('Total', pageWidth - margin, y, { align: 'right' });
+    y += 5;
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 8;
+
+    doc.setFont('helvetica', 'normal');
+
+    pedido.elementosPedido.forEach((item) => {
+      if (y > pageHeight - 42) {
+        doc.addPage();
+        y = 22;
+      }
+
+      const nombre = item.productoItem?.nombre || 'Producto';
+      const cantidad = item.cantidadItem || 1;
+      const precio = pedido.precioSeleccionado || item.productoItem?.precioRetail || 0;
+      const totalLinea = precio * cantidad;
+      const nombreLineas = doc.splitTextToSize(nombre, 78);
+
+      doc.text(nombreLineas, margin, y);
+      doc.text(String(pedido.tallaSeleccionado || '-'), 102, y);
+      doc.text(String(cantidad), 128, y);
+      doc.text(this.formatearMoneda(precio), 150, y);
+      doc.text(this.formatearMoneda(totalLinea), pageWidth - margin, y, { align: 'right' });
+
+      y += Math.max(nombreLineas.length * 5.5, 9);
+    });
+
+    y += 4;
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 9;
+
+    doc.setFont('helvetica', 'normal');
+    doc.text('Subtotal', 132, y);
+    doc.text(this.formatearMoneda(pedido.subtotalPedido), pageWidth - margin, y, { align: 'right' });
+    y += 7;
+    doc.text('Gastos de envio', 132, y);
+    doc.text(this.formatearMoneda(pedido.gastosEnvio), pageWidth - margin, y, { align: 'right' });
+    y += 9;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.text('Total', 132, y);
+    doc.text(this.formatearMoneda(pedido.totalPedido), pageWidth - margin, y, { align: 'right' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(110, 110, 110);
+    doc.text('REALG4 Sneakers - Documento generado automaticamente desde tu panel de cliente.', margin, pageHeight - 12);
+
+    doc.save(`pedido_${facturaId}.pdf`);
   }
 
-  // descargarPdf(pedido: IPedido) {
-  //   const doc = new jsPDF();
+  private async obtenerImagenBase64(url: string): Promise<string | null> {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
 
-  //   // Estilos
-  //   const styles = {
-  //     header: {
-  //       fontSize: 18,
-  //       fontStyle: 'bold',
-  //       alignment: 'center'
-  //     },
-  //     subheader: {
-  //       fontSize: 14,
-  //       fontStyle: 'bold',
-  //       marginBottom: 5
-  //     },
-  //     detalles: {
-  //       fontSize: 14,
-  //       marginBottom: 5
-  //     }
-  //   };
+      return await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.error('No se pudo cargar el logo del PDF:', error);
+      return null;
+    }
+  }
 
-  //   const imagen = this.imgPdf;
+  private formatearFecha(fecha: Date): string {
+    if (!fecha) {
+      return '-';
+    }
 
-  //   // Establecer el tamaño y la alineación del título
-  //   doc.setFont('helvetica', 'bold');
-  //   doc.setFontSize(styles.header.fontSize);
-  //   doc.text('¡Gracias!', 105, 20, { align: 'center' });
+    return new Intl.DateTimeFormat('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(new Date(fecha));
+  }
 
-  //   // Insertar imagen
-  //   if (imagen) {
-  //     doc.addImage(imagen, 'JPEG', 105 - 79 / 2, 25, 79, 79); // Centrado en el PDF (Ajuste el tamaño de la imagen según sea necesario)
-  //   }
-
-  //   // Continuar con el resto del contenido del PDF
-  //   doc.setFont('helvetica', 'normal');
-  //   doc.setFontSize(styles.subheader.fontSize);
-  //   doc.text('Nº de Factura: ' + pedido._id, 20, 120);
-
-  //   doc.setFontSize(styles.detalles.fontSize);
-  //   doc.text('ID del pedido: ' + pedido._id, 20, 130);
-  //   doc.text('Fecha del Pedido: ' + pedido.fechaPedido, 20, 140); // Usamos la función formatDate aquí
-  //   doc.text('Facturado a: ' + this.usuarioLogeado()?.email , 20, 150);
-  //   doc.text('Fuente: RealG4', 20, 160);
-
-  //   // Detalles de los productos en la tabla
-  //   let yPosition = 170; // Comienza debajo de los detalles previos
-  //   doc.setFontSize(styles.subheader.fontSize);
-  //   doc.text('Detalles de tu pedido:', 20, yPosition);
-  //   yPosition += 10;
-
-  //   // Título de la tabla
-  //   doc.setFontSize(12);
-  //   doc.text('Producto', 20, yPosition);
-  //   doc.text('Cantidad', 100, yPosition);
-  //   doc.text('Precio', 150, yPosition);
-  //   yPosition += 10;
-
-  //   // Llenado de la tabla con los productos
-  //   pedido.elementosPedido.forEach((item, index) => {
-  //     // Aquí usamos la imagen y datos de cada producto
-  //     doc.text(item.productoItem.nombre, 20, yPosition);
-  //     doc.text(item.cantidadItem.toString(), 100, yPosition);
-  //     doc.text(pedido.precioSeleccionado + "€", 150, yPosition);
-
-  //     // Verificar si el producto tiene una imagen
-  //     let imagenProducto = item.productoItem.imagenes && item.productoItem.imagenes[0];
-  //     console.log('Imagen recuperada: ' ,imagenProducto);
-  //     if (imagenProducto && imagenProducto.startsWith('data:image')) {
-  //       try {
-  //         doc.addImage(imagenProducto, 'JPEG', 20, yPosition, 30, 30);
-  //         yPosition += 35;
-  //       } catch (error) {
-  //         console.error('Error al agregar la imagen al PDF:', error);
-  //       }
-  //     } else {
-  //       console.error('La imagen no es válida o no tiene el formato esperado.');
-  //     }
-  //   });
-
-  //   // Total del pedido
-  //   doc.setFontSize(styles.subheader.fontSize);
-  //   doc.text('Total: ' + pedido.totalPedido + '€', 20, yPosition);
-
-  //   // Guardar el PDF
-  //   doc.save(`pedido_${pedido._id || 'sin_id'}.pdf`);
-  // }
+  private formatearMoneda(valor: number): string {
+    return new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR'
+    }).format(valor || 0);
+  }
 
   onPageChange(event: any) {
     this.page = event.page;
   }
 
   comprarDeNuevo(idProducto: String) {
-
     this.router.navigate(['/es-Es/mostrar-producto', idProducto]);
   }
 
 }
+
+
+
